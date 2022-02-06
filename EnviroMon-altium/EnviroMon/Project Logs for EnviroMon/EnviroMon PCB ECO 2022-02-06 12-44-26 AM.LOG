@@ -1,0 +1,19 @@
+Added Component: Designator=U9(EEPROM 8TSSOP)
+Add component (AddParameter): Name = "Category"; Value = "EEPROM"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Rohm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "BR25G512FVT-3GE2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pricing 1"; Value = "1=0.89000, 10=0.81000, 25=0.79960, 50=0.79500, 100=0.71080, 250=0.70480, 500=0.69438, 1000=0.66954 (USD)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS"; Value = "Yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS Compliant"; Value = "Yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Stock 1"; Value = "376"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "BR25G512FVT-3GE2CT-ND"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=MEMCS Pin=U9-1
+Added Pin To Net: NetName=MEMDI Pin=U9-2
+Added Pin To Net: NetName=MEMWP Pin=U9-3
+Added Pin To Net: NetName=GND Pin=U9-4
+Added Pin To Net: NetName=MEMDO Pin=U9-5
+Added Pin To Net: NetName=MEMCLK Pin=U9-6
+Added Pin To Net: NetName=MEMHOLD Pin=U9-7
+Added Pin To Net: NetName=VREG Pin=U9-8
+Added Member To Class: ClassName=EnviroMon-p1 Member=Component U9 512kb EEPROM

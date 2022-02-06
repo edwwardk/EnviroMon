@@ -1,0 +1,23 @@
+Added Component: Designator=J2(USB4510-03-1-A)
+Add component (AddParameter): Name = "Category"; Value = "Uncategorized"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Global Connector Technology"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "USB4510-03-1-A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS"; Value = "No"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "2073-USB4510-03-1-ATR-ND"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=J2-A1-B12
+Added Pin To Net: NetName=GND Pin=J2-A1-B12
+Added Pin To Net: NetName=VBUSIN Pin=J2-A4-B9
+Added Pin To Net: NetName=CC1 Pin=J2-A5
+Added Pin To Net: NetName=D+ Pin=J2-A6
+Added Pin To Net: NetName=D- Pin=J2-A7
+Added Pin To Net: NetName=GND Pin=J2-B1-A12
+Added Pin To Net: NetName=VBUSIN Pin=J2-B4-A9
+Added Pin To Net: NetName=CC2 Pin=J2-B5
+Added Pin To Net: NetName=D+ Pin=J2-B6
+Added Pin To Net: NetName=D- Pin=J2-B7
+Added Pin To Net: NetName=GND Pin=J2-SHELL
+Added Pin To Net: NetName=GND Pin=J2-SHELL
+Added Pin To Net: NetName=GND Pin=J2-SHELL
+Added Pin To Net: NetName=GND Pin=J2-SHELL
+Added Member To Class: ClassName=EnviroMon-p1 Member=Component J2 USB C Receptable
