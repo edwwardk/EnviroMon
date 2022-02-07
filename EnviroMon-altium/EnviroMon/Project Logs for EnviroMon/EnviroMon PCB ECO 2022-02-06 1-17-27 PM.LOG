@@ -1,0 +1,4 @@
+Added Component: Designator=FB1(1206)
+Added Pin To Net: NetName=GND Pin=FB1-1
+Added Pin To Net: NetName=NetFB1_2 Pin=FB1-2
+Added Member To Class: ClassName=EnviroMon-p1 Member=Component FB1 Ferrite Bead

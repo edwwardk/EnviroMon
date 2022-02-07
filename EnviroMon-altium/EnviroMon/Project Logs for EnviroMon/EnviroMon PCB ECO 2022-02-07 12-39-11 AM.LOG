@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=MEMDO Pin=U4-3
+Removed Pin From Net: NetName=MEMCLK Pin=U4-4
+Removed Pin From Net: NetName=MEMCS Pin=U4-5
+Added Pin To Net: NetName=MEMCS Pin=U4-3
+Added Pin To Net: NetName=MEMDO Pin=U4-4
+Added Pin To Net: NetName=MEMCLK Pin=U4-5
+Added Member To Class: ClassName=EnviroMon-p1 Member=Component U4 Main Microcontroller
