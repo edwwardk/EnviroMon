@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=VBUS Pin=P1-1
+Removed Pin From Net: NetName=VBUS Pin=P1-9
+Removed Pin From Net: NetName=VBUS Pin=P2-1
+Removed Pin From Net: NetName=VBUS Pin=P2-7
+Added Pin To Net: NetName=VREG Pin=P1-1
+Added Pin To Net: NetName=VREG Pin=P1-9
+Added Pin To Net: NetName=VREG Pin=P2-1
+Added Pin To Net: NetName=VREG Pin=P2-7

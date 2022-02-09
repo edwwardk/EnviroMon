@@ -1,0 +1,15 @@
+Change Component DesignItemId : Designator=D9 Old DesignItemId=LED-GREEN New DesignItemId=LED-RED
+Change Component DesignItemId : Designator=D10 Old DesignItemId=LED-GREEN New DesignItemId=LED-RED
+Change Component DesignItemId : Designator=D11 Old DesignItemId=LED-GREEN New DesignItemId=LED-RED
+Change Component DesignItemId : Designator=D16 Old DesignItemId=LED-GREEN New DesignItemId=LED-RED
+Change Component DesignItemId : Designator=D17 Old DesignItemId=LED-GREEN New DesignItemId=LED-RED
+Change Component Comment : Designator=D9 Old Comment=GRN New Comment=RED
+Change Component Comment : Designator=D10 Old Comment=GRN New Comment=RED
+Change Component Comment : Designator=D11 Old Comment=GRN New Comment=RED
+Change Component Comment : Designator=D16 Old Comment=GRN New Comment=RED
+Change Component Comment : Designator=D17 Old Comment=GRN New Comment=RED
+Change Component Description : Designator=D9 Old Description=Green LED New Description=Red LED
+Change Component Description : Designator=D10 Old Description=Green LED New Description=Red LED
+Change Component Description : Designator=D11 Old Description=Green LED New Description=Red LED
+Change Component Description : Designator=D16 Old Description=Green LED New Description=Red LED
+Change Component Description : Designator=D17 Old Description=Green LED New Description=Red LED

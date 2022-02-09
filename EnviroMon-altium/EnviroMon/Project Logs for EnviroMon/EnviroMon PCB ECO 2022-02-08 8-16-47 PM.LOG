@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=VREG Pin=U10-3
+Removed Pin From Net: NetName=VBAT Pin=U10-4
+Added Pin To Net: NetName=VIN Pin=U10-3
+Added Pin To Net: NetName=VREG Pin=U10-4
