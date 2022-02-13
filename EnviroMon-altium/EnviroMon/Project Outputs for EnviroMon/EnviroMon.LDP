@@ -1,0 +1,3 @@
+Layer Pairs Export File for PCB: C:\Users\300302634\OneDrive - Okanagan College\winter 2022\elen 227\227 project\EnviroMon\EnviroMon-altium\EnviroMon\EnviroMon.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=enviromon-roundholes.txt|DrillLayers=gtl,gbl
+LayersSetName=Top_Bot_Slot_Holes|DrillFile=enviromon-slotholes.txt|DrillLayers=gtl,gbl
