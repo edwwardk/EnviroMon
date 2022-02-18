@@ -1,10 +1,10 @@
 /*
- * EnviroMon main file
- * written by Edward Kneller
+ * enviromon main code
+ * written by edward kneller
  * 
  */
 
-#include "xc.h"
+#include "pincfg.h"
 
 int main(void) {
     return 0;
