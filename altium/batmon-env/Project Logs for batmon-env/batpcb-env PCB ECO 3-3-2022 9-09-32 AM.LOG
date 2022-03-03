@@ -1,0 +1,28 @@
+Removed Pin From Net: NetName=Vbat Pin=BAT-1
+Removed Pin From Net: NetName=GND Pin=BAT-2
+Removed Member From Class: ClassName=batsch-env Member=BAT
+Added Component: Designator=J2(JST-PH)
+Added Component: Designator=P1(HDR1X2)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P2(HDR1X7)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=Vbat Pin=J2-1
+Added Pin To Net: NetName=GND Pin=J2-2
+Added Pin To Net: NetName=Vbat Pin=P1-1
+Added Pin To Net: NetName=GND Pin=P1-2
+Added Pin To Net: NetName=VREG Pin=P2-1
+Added Pin To Net: NetName=GND Pin=P2-2
+Added Pin To Net: NetName=SDA Pin=P2-3
+Added Pin To Net: NetName=GND Pin=P2-4
+Added Pin To Net: NetName=SCL Pin=P2-5
+Added Pin To Net: NetName=GND Pin=P2-6
+Added Pin To Net: NetName=VREG Pin=P2-7
+Added Member To Class: ClassName=batsch-env Member=Component J2 JST-PH
+Added Member To Class: ClassName=batsch-env Member=Component P1 Header 2
+Added Member To Class: ClassName=batsch-env Member=Component P2 Header 7
+Change Room Name: Old Name=EnviroMon-p1 New Name=batsch-env
+Change Room Scope: Old Scope=InComponentClass('EnviroMon-p1') New Scope=InComponentClass('batsch-env')
