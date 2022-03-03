@@ -1,8 +1,0 @@
-Added Pin To Net: NetName=GND Pin=E1-GND
-Added Pin To Net: NetName=GND Pin=E1-GND
-Added Pin To Net: NetName=GND Pin=E1-GND
-Added Pin To Net: NetName=GND Pin=E1-GND
-Added Member To Class: ClassName=EnviroMon-p1 Member=Component D9 GRN
-Added Member To Class: ClassName=EnviroMon-p1 Member=Component D10 GRN
-Added Member To Class: ClassName=EnviroMon-p1 Member=Component D11 GRN
-Added Member To Class: ClassName=EnviroMon-p1 Member=Component D13 RED
