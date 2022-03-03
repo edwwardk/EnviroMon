@@ -1,0 +1,23 @@
+Add Component: Footprint Not Found JST-PH
+Added Component: Designator=P1(HDR1X7)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add Component: Footprint Not Found 0805
+Add Component: Footprint Not Found 0805
+Added Pin To Net: NetName=GND Pin=P1-2
+Added Pin To Net: NetName=GND Pin=P1-4
+Added Pin To Net: NetName=GND Pin=P1-6
+Added Net: Name=GND
+Added Net: Name=NetOA1_1
+Added Net: Name=NetOA1_3
+Added Pin To Net: NetName=SCL Pin=P1-5
+Added Net: Name=SCL
+Added Pin To Net: NetName=SDA Pin=P1-3
+Added Net: Name=SDA
+Added Net: Name=Vbat
+Added Pin To Net: NetName=VREG Pin=P1-1
+Added Pin To Net: NetName=VREG Pin=P1-7
+Added Net: Name=VREG
+Added Class: Name=batsch-env
+Added Room: Name=batsch-env
