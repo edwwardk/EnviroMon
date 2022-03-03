@@ -1,4 +1,6 @@
 [ProjectGroup]
 Version=1.0
 [Project1]
-ProjectPath=EnviroMon\EnviroMon.PrjPcb
+ProjectPath=EnviroMon\main-env.PrjPcb
+[Project2]
+ProjectPath=batmon-env\batmon-env.PrjPcb
