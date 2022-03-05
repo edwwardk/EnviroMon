@@ -1,5 +1,5 @@
 /* 
- * adccfg.h
+ * TEMPLATE.h
  * written by edward kneller
  * 
  * configures pps, control regs, initial states
@@ -8,12 +8,13 @@
  */
 
 // include catch clause
-#ifndef ADCCFG_H
-#define ADCCFG_H
+#ifndef MEM_ENV_H
+#define MEM_ENV_H
 
 #include <xc.h>
 
-
+#define READ
+#define WRITE
 
 #endif
 
