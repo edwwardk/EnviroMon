@@ -5,12 +5,13 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>template.h</itemPath>
-      <itemPath>spicfg.h</itemPath>
-      <itemPath>i2ccfg.h</itemPath>
       <itemPath>adc-env.h</itemPath>
       <itemPath>maincfg-env.h</itemPath>
       <itemPath>mem-env.h</itemPath>
       <itemPath>usb-env.h</itemPath>
+      <itemPath>i2c-env.h</itemPath>
+      <itemPath>pincfg_1.h</itemPath>
+      <itemPath>spi-env.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -27,6 +28,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
