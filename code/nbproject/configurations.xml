@@ -10,8 +10,9 @@
       <itemPath>mem-env.h</itemPath>
       <itemPath>usb-env.h</itemPath>
       <itemPath>i2c-env.h</itemPath>
-      <itemPath>pincfg_1.h</itemPath>
       <itemPath>spi-env.h</itemPath>
+      <itemPath>rtcc-env.h</itemPath>
+      <itemPath>debug-env.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

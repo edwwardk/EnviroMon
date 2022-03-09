@@ -1,5 +1,5 @@
 /* 
- * spicfg.h
+ * TEMPLATE.h
  * written by edward kneller
  * 
  * configures pps, control regs, initial states
@@ -8,8 +8,8 @@
  */
 
 // include catch clause
-#ifndef SPI_ENV_H
-#define SPI_ENV_H
+#ifndef RTCC_ENV_H
+#define RTCC_ENV_H
 
 // ensure xc.h inclusion
 #include <xc.h>
@@ -21,9 +21,10 @@
 
 
 // func decs
-void spiInit();
+void rtccInit();
 
-void spiInit() {
+// initialize rtcc module
+void rtccInit() {
     
 }
 #endif

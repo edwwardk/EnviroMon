@@ -8,11 +8,19 @@
  */
 
 // include catch clause
-#ifndef TEMPLATE_H
-#define TEMPLATE_H
+#ifndef TEMPLATE_ENV_H
+#define TEMPLATE_ENV_H
 
+// ensure xc.h inclusion
 #include <xc.h>
 
+// other includes
+
+
+// constant defs
+
+
+// func decs
 
 
 #endif

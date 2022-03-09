@@ -51,36 +51,37 @@
 // ensure xc.h inclusion
 #include <xc.h>
 
-// include module cfg files
+// other includes
 #include "adc-env.h"
 #include "i2c-env.h"
-#include "spi-env.h"
 #include "mem-env.h"
+#include "rtcc-env.h"
+#include "spi-env.h"
 #include "usb-env.h"
 
-// define constants
+// constant defs
 #define INT1PIN 13
 
-// function declarations
-void __init();
+// func decs
+void __startup();
 void intInit();
-void pmdInit();
+void pmdDisableAll();
 
-// init all modules
-void __init() {
-    pmdInit(); // enable/disable peripheral modules
+// perform startup initializations
+void __startup() {
+    pmdDisableAll(); // disable all peripheral modules
     intInit(); // init external interrupts
 }
 
 // configure external interrupts
 void intInit() {
-    // set int0 pin digital input
-    PORTBbits.RB7 = 0; // clear state
-    TRISBbits.TRISB7 = 1; // input
+    // clear states
+    PORTBbits.RB7 = 0; // int0
+    PORTBbits.RB13 = 0; // int1
     
-    // set int1 pin digital input
-    PORTBbits.RB13 = 0; // clear state
-    TRISBbits.TRISB13 = 1; // input
+    // set as inputs
+    TRISBbits.TRISB7 = 1; // int0
+    TRISBbits.TRISB13 = 1; // int1
    
     // external interrupt pps
     __builtin_write_OSCCONL(OSCCON & 0xBF); // unlock pps
@@ -100,8 +101,8 @@ void intInit() {
     IEC1bits.INT1IE = 1; // int1
 }
 
-// configure pmd
-void pmdInit() {
+// disable all modules
+void pmdDisableAll() {
     // disable all timers
     PMD1bits.T5MD = 1;
     PMD1bits.T4MD = 1;
@@ -109,9 +110,20 @@ void pmdInit() {
     PMD1bits.T2MD = 1;
     PMD1bits.T1MD = 1;
     
+    // disable both i2c
+    PMD1bits.I2C1MD = 1;
+    PMD3bits.I2C2MD = 1;
+    
     // disable both uart
     PMD1bits.U2MD = 1;
     PMD1bits.U1MD = 1;
+    
+    // disable both spi
+    PMD1bits.SPI2MD = 1;
+    PMD1bits.SPI1MD = 1;
+    
+    // disable adc
+    PMD1bits.ADC1MD = 1;
     
     // disable all input capture
     PMD2bits.IC5MD = 1;
@@ -127,12 +139,23 @@ void pmdInit() {
     PMD2bits.OC2MD = 1;
     PMD2bits.OC1MD = 1;
     
+    // disable cmp
+    // triple comparator i think
+    PMD3bits.CMPMD = 1;
+    
+    // disable rtcc
+    PMD3bits.RTCCMD = 1;
+    
     // disable pmp
     // parallel master port
     PMD3bits.PMPMD = 1;
     
-    // disable i2c2
-    PMD3bits.I2C2MD = 1;
+    // disable crc
+    PMD3bits.CRCMD = 1;
+    
+    // disable upwm
+    // potentially pwm module?
+    PMD4bits.UPWMMD = 1;
     
     // disable refo
     // reference clock output
@@ -146,14 +169,8 @@ void pmdInit() {
     // low voltage detection
     PMD4bits.LVDMD = 1;
     
-    // ensure needed modules enabled
-    PMD1bits.I2C1MD = 0; // i2c1
-    PMD1bits.SPI2MD = 0; // spi2
-    PMD1bits.SPI1MD = 0; // spi1
-    PMD1bits.ADC1MD = 0; // adc
-    PMD3bits.RTCCMD = 0; // rtcc
-    PMD3bits.CRCMD = 0; // crc - not sure if needed
-    PMD4bits.USB1MD = 0; // usb? not sure if needed
+    // disable usb
+    PMD4bits.USB1MD = 1;
 }
 #endif
 

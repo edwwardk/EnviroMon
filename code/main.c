@@ -9,7 +9,7 @@
 
 
 int main(void) {
-    __init(); // init all modules, pps
+    __startup(); // init all modules, pps
     
     return 0;
 }

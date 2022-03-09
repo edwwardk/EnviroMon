@@ -8,19 +8,24 @@
  */
 
 // include catch clause
-#ifndef TEMPLATE_H
-#define TEMPLATE_H
+#ifndef USB_ENV_H
+#define USB_ENV_H
 
+// ensure xc.h inclusion
 #include <xc.h>
 
+// other includes
+
+
+// constant defs
+
+
+// func decs
 void usbInit();
 
 void usbInit() {
-    __builtin_write_OSCCONL(OSCCON & 0xBF); // unlock pps
     
-    __builtin_write_OSCCONL(OSCCON | 0x40); // lock pps
 }
-
 #endif
 
 
