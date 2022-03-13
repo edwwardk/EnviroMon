@@ -27,6 +27,9 @@
 void __startup();
 void intInit();
 
+void measTest();
+float test;
+
 // perform startup initializations
 void __startup() {
     pmdDisableAll(); // disable all peripheral modules
@@ -61,15 +64,26 @@ void intInit() {
     IEC1bits.INT1IE = 1; // int1
 }
 
+// testing
+void measTest() {
+    test = adcMeasure(APIN1);
+}
+
 // int0 isr
 void __attribute__((__interrupt__, no_auto_psv)) _INT0Interrupt(void) {
     IFS0bits.INT0IF = 0; // reset int0 flag
+    
+    measTest();
 }
 
 // int1 isr
 void __attribute__((__interrupt__, no_auto_psv)) _INT1Interrupt(void) {
     IFS1bits.INT1IF = 0; // reset int1 flag
+    
+    measTest();
 }
+
+
 #endif
 
 

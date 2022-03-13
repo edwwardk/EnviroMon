@@ -4,8 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/eddyk/OneDrive%20-%20Okanagan%20College/winter%202022/elen%20227/227%20project/EnviroMon/code/main.c</file>
+            <file>file:/C:/Users/eddyk/OneDrive%20-%20Okanagan%20College/winter%202022/elen%20227/227%20project/EnviroMon/code/sht30-env.h</file>
+            <file>file:/C:/Users/eddyk/OneDrive%20-%20Okanagan%20College/winter%202022/elen%20227/227%20project/EnviroMon/code/adc-env.h</file>
             <file>file:/C:/Users/eddyk/OneDrive%20-%20Okanagan%20College/winter%202022/elen%20227/227%20project/EnviroMon/code/cfg-env.h</file>
-            <file>file:/C:/Users/eddyk/OneDrive%20-%20Okanagan%20College/winter%202022/elen%20227/227%20project/EnviroMon/code/sys-env.h</file>
         </group>
     </open-files>
 </project-private>
