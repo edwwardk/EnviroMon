@@ -11,13 +11,13 @@
 #ifndef SPI_ENV_H
 #define SPI_ENV_H
 
-// ensure xc.h inclusion
+// ensure sys inclusions
 #include <xc.h>
-
-// other includes
-
+#include "sys-env.h"
 
 // constant defs
+
+// global variables
 
 
 // func decs

@@ -11,27 +11,27 @@
 #ifndef SHT30_ENV_H
 #define SHT30_ENV_H
 
-// ensure xc.h inclusion
+// ensure sys inclusions
 #include <xc.h>
-
-// other includes
-#include "adc-env.h"
+#include "sys-env.h"
 
 // constant defs
 
+// global variables
+
 
 // func decs
-float sht30RH();
-float sht30Temp();
+float sht30RH(uint8_t);
+float sht30Temp(uint8_t);
 
 // read %relative humidity
-float sht30RH() {
-    
+float sht30RH(uint8_t pin) {
+    return (-12.5 + (125 * (adcMeasure(pin) / VDDVAL)));
 }
 
 // read degC temperature
-float sht30Temp() {
-    
+float sht30Temp(uint8_t pin) {
+     return (-66.875 + (218.75 * (adcMeasure(pin) / VDDVAL)));
 }
 #endif
 

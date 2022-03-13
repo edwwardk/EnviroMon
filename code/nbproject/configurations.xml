@@ -12,9 +12,11 @@
       <itemPath>spi-env.h</itemPath>
       <itemPath>rtcc-env.h</itemPath>
       <itemPath>debug-env.h</itemPath>
-      <itemPath>cfg-env.h</itemPath>
       <itemPath>sys-env.h</itemPath>
       <itemPath>sht30-env.h</itemPath>
+      <itemPath>start-env.h</itemPath>
+      <itemPath>intcfg-env.h</itemPath>
+      <itemPath>isr-env.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

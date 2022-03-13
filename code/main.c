@@ -5,21 +5,37 @@
  */
 
 // includes
-#include "cfg-env.h"
+#include <xc.h>
+#include "sys-env.h"
+
+// constant defs
+#define SHT30RHPIN AN5
+#define SHT30TEMPPIN AN6
 
 
-#include "adc-env.h"
+// global variables
+float hum, temp, vhum, vtemp;
 
+// func decs
+void measTest();
+
+// main program
 int main(void) {
-    float test;
-    __startup(); // init all modules, pps
+    __startup(); // perform startup routine
     
-    TRISBbits.TRISB3 = 0;
-    ODCBbits.ODB3 = 0;
+    // cfg test led
+    _TRISB3 = 0; // rb3 output
+    _ODB3 = 0; // non-od
+
     
-    adcInit();
-    test = adcMeasure(APIN1);
     
-    while (1);
+    while (1) {
+        vhum = adcMeasure(AN5);
+        hum = sht30RH(SHT30RHPIN);
+        vtemp = adcMeasure(AN6);
+        temp = sht30Temp(SHT30TEMPPIN);
+        __delay_ms(100);
+    }
     return 0;
 }
+

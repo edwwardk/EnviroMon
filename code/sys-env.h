@@ -45,95 +45,153 @@
 #pragma config ICS = PGx1               // Emulator Pin Placement Select bits (Emulator functions are shared with PGEC1/PGED1)
 #pragma config GWRP = OFF               // General Segment Write Protect (Writes to program memory are allowed)
 #pragma config GCP = OFF                // General Segment Code Protect (Code protection is disabled)
-#pragma config JTAGEN = ON              // JTAG Port Enable (JTAG port is enabled)
-
-// ensure xc.h inclusion
-#include <xc.h>
+#pragma config JTAGEN = OFF              // JTAG Port Enable (JTAG port is disabled)
 
 // fcyc define
 #define FCY 4000000
 
-// other includes
+// system includes
+#include <xc.h>
 #include <libpic30.h>
 #include <stdio.h>
 
 // constant defs
+// pps inputs
+#define INT1 13 // pin 11 - rp13
+#define MISO 21 // pin 38 - rp21
+#define MEMDI 22 // pin 2 -  rp22
 
+// pps outputs
+#define MOSI _RP20R // pin 37 - rp20
+#define SCLK _RP19R // pin 36 - rp19
+#define MEMDO _RP24R // pin 4 - rp24
+#define MEMCLK _RP25R // pin 5 - rp25
+
+// port pins
+#define MEMCS _RC7 // pin 3 - rc7
+#define VREFEN _RA1 // pin 20 - ra1
+#define RFEN _RA8 // pin 32 - ra8
+#define RFRST _RB4 // pin 33 - rb4
+#define RFCS _RA9 // pin 35 - ra9
+#define MEMWP _RA10 // pin 12 - ra10
+#define MEMHOLD _RA7 // pin 13 - ra7
+#define RTCMF _RA2 // pin 30 - ra2
+#define DBGEN _RA3 // pin 31 - ra3
+
+// values
+#define VDDVAL 2.8 // system vdd
+
+// global variables
 
 // func decs
+void sysInit();
 void pmdDisableAll();
+
+// initialize misc system cfgs
+void sysInit() {
+    // pps
+    __builtin_write_OSCCONL(OSCCON & _OSCCON_IOLOCK_MASK); // unlock pps
+    // inputs
+    _INT1R = INT1; // int1
+    _SDI1R = MISO; // miso
+    _SDI2R = MEMDI; // memdi
+    
+    // outputs
+    MOSI = _RPOUT_SDO1; // mosi
+    SCLK = _RPOUT_SCK1OUT; // sclk
+    MEMDO = _RPOUT_SDO2; //  memdo
+    MEMCLK = _RPOUT_SCK2OUT; // memclk
+    __builtin_write_OSCCONL(OSCCON | _OSCCON_IOLOCK_MASK); // lock pps
+    
+    
+    _NSTDIS = 1; // disable interrupt nesting
+}
 
 // disable all modules
 void pmdDisableAll() {
     // disable all timers
-    PMD1bits.T5MD = 1;
-    PMD1bits.T4MD = 1;
-    PMD1bits.T3MD = 1;
-    PMD1bits.T2MD = 1;
-    PMD1bits.T1MD = 1;
+    _T5MD = 1;
+    _T4MD = 1;
+    _T3MD = 1;
+    _T2MD = 1;
+    _T1MD = 1;
     
     // disable both i2c
-    PMD1bits.I2C1MD = 1;
-    PMD3bits.I2C2MD = 1;
+    _I2C1MD = 1;
+    _I2C2MD = 1;
     
     // disable both uart
-    PMD1bits.U2MD = 1;
-    PMD1bits.U1MD = 1;
+    _U2MD = 1;
+    _U1MD = 1;
     
     // disable both spi
-    PMD1bits.SPI2MD = 1;
-    PMD1bits.SPI1MD = 1;
+    _SPI2MD = 1;
+    _SPI1MD = 1;
     
     // disable adc
-    PMD1bits.ADC1MD = 1;
+    _ADC1MD = 1;
     
     // disable all input capture
-    PMD2bits.IC5MD = 1;
-    PMD2bits.IC4MD = 1;
-    PMD2bits.IC3MD = 1;
-    PMD2bits.IC2MD = 1;
-    PMD2bits.IC1MD = 1;
+    _IC5MD = 1;
+    _IC4MD = 1;
+    _IC3MD = 1;
+    _IC2MD = 1;
+    _IC1MD = 1;
     
     // disable all output compare
-    PMD2bits.OC5MD = 1;
-    PMD2bits.OC4MD = 1;
-    PMD2bits.OC3MD = 1;
-    PMD2bits.OC2MD = 1;
-    PMD2bits.OC1MD = 1;
+    _OC5MD = 1;
+    _OC4MD = 1;
+    _OC3MD = 1;
+    _OC2MD = 1;
+    _OC1MD = 1;
     
     // disable cmp
     // triple comparator i think
-    PMD3bits.CMPMD = 1;
+    _CMPMD = 1;
     
     // disable rtcc
-    PMD3bits.RTCCMD = 1;
+    _RTCCMD = 1;
     
     // disable pmp
     // parallel master port
-    PMD3bits.PMPMD = 1;
+    _PMPMD = 1;
     
     // disable crc
-    PMD3bits.CRCMD = 1;
+    _CRCMD = 1;
     
     // disable upwm
     // potentially pwm module?
-    PMD4bits.UPWMMD = 1;
+    _UPWMMD = 1;
     
     // disable refo
     // reference clock output
-    PMD4bits.REFOMD = 1;
+    _REFOMD = 1;
     
     // disable ctmu
     // charge time measurement unit
-    PMD4bits.CTMUMD = 1;
+    _CTMUMD = 1;
     
     // disable lvd
     // low voltage detection
-    PMD4bits.LVDMD = 1;
+    _LVDMD = 1;
     
     // disable usb
-    PMD4bits.USB1MD = 1;
+    _USB1MD = 1;
 }
+
+// include all
+#include "adc-env.h"
+#include "debug-env.h"
+#include "i2c-env.h"
+#include "intcfg-env.h"
+#include "isr-env.h"
+#include "mem-env.h"
+#include "rtcc-env.h"
+#include "sht30-env.h"
+#include "spi-env.h"
+#include "usb-env.h"
+#include "start-env.h"
+
 #endif
 
 

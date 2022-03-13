@@ -11,13 +11,13 @@
 #ifndef I2C_ENV_H
 #define I2C_ENV_H
 
-// ensure xc.h inclusion
+// ensure sys inclusions
 #include <xc.h>
-
-// other includes
-
+#include "sys-env.h"
 
 // constant defs
+
+// global variables
 
 
 // func decs
