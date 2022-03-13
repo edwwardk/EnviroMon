@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [EnviroMon.PrjPcb]
+   Generated File[EnviroMon-RoundHoles.TXT]
+   Generated File[EnviroMon-SlotHoles.TXT]
+   Generated File[EnviroMon.LDP]
+   Generated File[EnviroMon.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 10:15:00 AM On 2/10/2022

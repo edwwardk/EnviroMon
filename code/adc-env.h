@@ -18,7 +18,7 @@
 
 
 // constant defs
-
+#define VREFEN PORTAbits.RA1
 
 // func decs
 void adcInit();
@@ -27,6 +27,10 @@ void adcDisable();
 
 // initialize adc
 void adcInit() {
+    // cfg vref enable pin
+    VREFEN = 0;
+    TRISAbits.TRISA1 = 0;
+    
     // enable adc power
     PMD1bits.ADC1MD = 0;
     
@@ -56,7 +60,11 @@ void adcInit() {
     PMD1bits.ADC1MD = 1;
 }
 
+// enables adc
 void adcEnable() {
+    // enable vref
+    VREFEN = 1;
+    
     // enable power
     PMD1bits.ADC1MD = 0;
     
@@ -64,7 +72,11 @@ void adcEnable() {
     AD1CON1bits.ADON = 1;
 }
 
+// disables adc
 void adcDisable() {
+    // disable vref
+    VREFEN = 0;
+    
     // disable module
     AD1CON1bits.ADON = 0;
     

@@ -6,13 +6,15 @@
                    projectFiles="true">
       <itemPath>template.h</itemPath>
       <itemPath>adc-env.h</itemPath>
-      <itemPath>maincfg-env.h</itemPath>
       <itemPath>mem-env.h</itemPath>
       <itemPath>usb-env.h</itemPath>
       <itemPath>i2c-env.h</itemPath>
       <itemPath>spi-env.h</itemPath>
       <itemPath>rtcc-env.h</itemPath>
       <itemPath>debug-env.h</itemPath>
+      <itemPath>cfg-env.h</itemPath>
+      <itemPath>sys-env.h</itemPath>
+      <itemPath>sht30-env.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -194,6 +196,18 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
+      <item path="debug-env.h" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
       <snap>
         <property key="ADC 1" value="true"/>
         <property key="AutoSelectMemRanges" value="auto"/>

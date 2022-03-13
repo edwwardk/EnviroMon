@@ -1,15 +1,15 @@
 /* 
- * envcfg.h
+ * TEMPLATE.h
  * written by edward kneller
  * 
- * configures all modules, control regs...
+ * configures pps, control regs, initial states
  * includes xc.h
  * 
  */
 
 // include catch clause
-#ifndef MAINCFG_ENV_H
-#define MAINCFG_ENV_H
+#ifndef SYS_ENV_H
+#define SYS_ENV_H
 
 // CONFIG4
 #pragma config DSWDTPS = DSWDTPSA       // DSWDT Postscale Select (1:2,097,152 (36 minutes))
@@ -47,59 +47,21 @@
 #pragma config GCP = OFF                // General Segment Code Protect (Code protection is disabled)
 #pragma config JTAGEN = ON              // JTAG Port Enable (JTAG port is enabled)
 
-
 // ensure xc.h inclusion
 #include <xc.h>
 
+// fcyc define
+#define FCY 4000000
+
 // other includes
-#include "adc-env.h"
-#include "i2c-env.h"
-#include "mem-env.h"
-#include "rtcc-env.h"
-#include "spi-env.h"
-#include "usb-env.h"
+#include <libpic30.h>
+#include <stdio.h>
 
 // constant defs
-#define INT1PIN 13
+
 
 // func decs
-void __startup();
-void intInit();
 void pmdDisableAll();
-
-// perform startup initializations
-void __startup() {
-    pmdDisableAll(); // disable all peripheral modules
-    intInit(); // init external interrupts
-}
-
-// configure external interrupts
-void intInit() {
-    // clear states
-    PORTBbits.RB7 = 0; // int0
-    PORTBbits.RB13 = 0; // int1
-    
-    // set as inputs
-    TRISBbits.TRISB7 = 1; // int0
-    TRISBbits.TRISB13 = 1; // int1
-   
-    // external interrupt pps
-    __builtin_write_OSCCONL(OSCCON & 0xBF); // unlock pps
-    RPINR0bits.INT1R = INT1PIN; // map int1
-    __builtin_write_OSCCONL(OSCCON | 0x40); // lock pps
-    
-    // positive edge triggered
-    INTCON2bits.INT0EP = 0; // int0
-    INTCON2bits.INT1EP = 0; // int1
-    
-    // clear interrupt flags
-    IFS0bits.INT0IF = 0; // int0
-    IFS1bits.INT1IF = 0; // int1
-    
-    // enable interrupts
-    IEC0bits.INT0IE = 1; // int0
-    IEC1bits.INT1IE = 1; // int1
-}
 
 // disable all modules
 void pmdDisableAll() {

@@ -1,8 +1,10 @@
 build/default/production/main.o:  \
 main.c  \
-maincfg-env.h  \
+cfg-env.h  \
+sys-env.h  \
 adc-env.h  \
-i2c-env.h  \
- spi-env.h  \
+ i2c-env.h  \
 mem-env.h  \
+rtcc-env.h  \
+spi-env.h  \
 usb-env.h 

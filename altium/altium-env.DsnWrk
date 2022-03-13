@@ -4,3 +4,5 @@ Version=1.0
 ProjectPath=main-env\main-env.PrjPcb
 [Project2]
 ProjectPath=batmon-env\batmon-env.PrjPcb
+[Project3]
+ProjectPath=rev1-env\rev1-env.PrjPcb
