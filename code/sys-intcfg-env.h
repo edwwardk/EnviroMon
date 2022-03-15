@@ -8,12 +8,12 @@
  */
 
 // include catch clause
-#ifndef INTCFG_ENV_H
-#define INTCFG_ENV_H
+#ifndef SYS_INTCFG_ENV_H
+#define SYS_INTCFG_ENV_H
 
 // ensure sys inclusions
 #include <xc.h>
-#include "sys-env.h"
+#include "sys-cfg-env.h"
 
 // func decs
 void intInit();

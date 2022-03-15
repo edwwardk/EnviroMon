@@ -8,12 +8,12 @@
  */
 
 // include catch clause
-#ifndef USB_ENV_H
-#define USB_ENV_H
+#ifndef SYS_USB_ENV_H
+#define SYS_USB_ENV_H
 
 // ensure sys inclusions
 #include <xc.h>
-#include "sys-env.h"
+#include "sys-cfg-env.h"
 
 // constant defs
 #define VBUS_DETECT PORTBbits.RB5

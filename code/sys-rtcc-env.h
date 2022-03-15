@@ -8,14 +8,15 @@
  */
 
 // include catch clause
-#ifndef RTCC_ENV_H
-#define RTCC_ENV_H
+#ifndef SYS_RTCC_ENV_H
+#define SYS_RTCC_ENV_H
 
 // ensure sys inclusions
 #include <xc.h>
-#include "sys-env.h"
+#include "sys-cfg-env.h"
 
 // constant defs
+
 
 // global variables
 

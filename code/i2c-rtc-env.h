@@ -1,5 +1,5 @@
 /* 
- * spicfg.h
+ * TEMPLATE.h
  * written by edward kneller
  * 
  * configures pps, control regs, initial states
@@ -8,8 +8,8 @@
  */
 
 // include catch clause
-#ifndef SPI_ENV_H
-#define SPI_ENV_H
+#ifndef I2C_RTC_ENV_H
+#define I2C_RTC_ENV_H
 
 // ensure sys inclusions
 #include <xc.h>
@@ -17,15 +17,13 @@
 
 // constant defs
 
+
 // global variables
 
 
 // func decs
-void spiInit();
 
-void spiInit() {
-    
-}
+
 #endif
 
 

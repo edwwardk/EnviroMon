@@ -11,12 +11,12 @@
  */
 
 // include catch clause
-#ifndef MEM_ENV_H
-#define MEM_ENV_H
+#ifndef SPI_MEM_ENV_H
+#define SPI_MEM_ENV_H
 
 // ensure sys inclusions
 #include <xc.h>
-#include "sys-env.h"
+#include "sys-cfg-env.h"
 
 // constant defs
 #define _SPI2EN SPI2STATbits.SPIEN

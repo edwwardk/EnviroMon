@@ -8,8 +8,8 @@
  */
 
 // include catch clause
-#ifndef SYS_ENV_H
-#define SYS_ENV_H
+#ifndef SYS_CFG_ENV_H
+#define SYS_CFG_ENV_H
 
 // CONFIG4
 #pragma config DSWDTPS = DSWDTPSA       // DSWDT Postscale Select (1:2,097,152 (36 minutes))
@@ -45,10 +45,10 @@
 #pragma config ICS = PGx1               // Emulator Pin Placement Select bits (Emulator functions are shared with PGEC1/PGED1)
 #pragma config GWRP = OFF               // General Segment Write Protect (Writes to program memory are allowed)
 #pragma config GCP = OFF                // General Segment Code Protect (Code protection is disabled)
-#pragma config JTAGEN = OFF              // JTAG Port Enable (JTAG port is disabled)
+#pragma config JTAGEN = OFF             // JTAG Port Enable (JTAG port is disabled)
 
 // fcyc define
-#define FCY 4000000
+#define FCY 8000000
 
 // system includes
 #include <xc.h>
@@ -179,19 +179,25 @@ void pmdDisableAll() {
     _USB1MD = 1;
 }
 
-// include all
-#include "adc-env.h"
-#include "debug-env.h"
+// protocol includes
 #include "i2c-env.h"
-#include "intcfg-env.h"
-#include "isr-env.h"
-#include "mem-env.h"
-#include "rtcc-env.h"
-#include "sht30-env.h"
 #include "spi-env.h"
-#include "usb-env.h"
-#include "start-env.h"
+
+// module includes
+#include "adc-env.h"
+#include "sys-debug-env.h"
+#include "sys-rtcc-env.h"
+
+// device specific includes
+#include "adc-sht30-env.h"
+#include "i2c-rtc-env.h"
+#include "i2c-adc-env.h"
+#include "spi-mem-env.h"
+
+// startup sequence
+#include "sys-start-env.h"
+
+// isrs includes
+#include "sys-intcfg-env.h"
 
 #endif
-
-

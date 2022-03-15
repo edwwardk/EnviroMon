@@ -7,12 +7,12 @@
  */
 
 // include catch clause
-#ifndef START_ENV_H
-#define START_ENV_H
+#ifndef SYS_START_ENV_H
+#define SYS_START_ENV_H
 
 // ensure sys inclusions
 #include <xc.h>
-#include "sys-env.h"
+#include "sys-cfg-env.h"
 
 // func decs
 void __startup();

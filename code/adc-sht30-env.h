@@ -8,12 +8,12 @@
  */
 
 // include catch clause
-#ifndef SHT30_ENV_H
-#define SHT30_ENV_H
+#ifndef ADC_SHT30_ENV_H
+#define ADC_SHT30_ENV_H
 
 // ensure sys inclusions
 #include <xc.h>
-#include "sys-env.h"
+#include "sys-cfg-env.h"
 
 // constant defs
 

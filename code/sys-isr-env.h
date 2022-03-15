@@ -7,12 +7,12 @@
  */
 
 // include catch clause
-#ifndef ISR_ENV_H
-#define ISR_ENV_H
+#ifndef SYS_ISR_ENV_H
+#define SYS_ISR_ENV_H
 
 // ensure sys inclusions
 #include <xc.h>
-#include "sys-env.h"
+#include "sys-cfg-env.h"
 
 // int0 isr
 void __attribute__((__interrupt__, no_auto_psv)) _INT0Interrupt(void) {
@@ -24,9 +24,10 @@ void __attribute__((__interrupt__, no_auto_psv)) _INT1Interrupt(void) {
     _INT1IF = 0; // reset int1 flag
 }
 
-// adc1 module isr
-void __attribute__((__interrupt__, no_auto_psv)) _ADC1Interrupt(void) {
-    _AD1IF = 0; // reset adc flag
+// rtcc isr
+void __attribute__((__interrupt__, no_auto_psv)) _RTCCInterrupt(void) {
+    _RTCIF = 0; // reset rtcc flag
+    // peform wake routine
 }
 
 // usb1 module isr

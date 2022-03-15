@@ -13,7 +13,7 @@
 
 // ensure sys inclusions
 #include <xc.h>
-#include "sys-env.h"
+#include "sys-cfg-env.h"
 
 // constant defs
 #define VREFP 2.048
@@ -27,9 +27,6 @@
 #define AN4 0b00110 // AN6
 #define AN5 0b00111 // AN7
 #define AN6 0b01000 // AN8
-
-// global variables
-
 
 // func decs
 void adcInit();

@@ -8,12 +8,12 @@
  */
 
 // include catch clause
-#ifndef DEBUG_ENV_H
-#define DEBUG_ENV_H
+#ifndef SYS_DEBUG_ENV_H
+#define SYS_DEBUG_ENV_H
 
 // ensure sys inclusions
 #include <xc.h>
-#include "sys-env.h"
+#include "sys-cfg-env.h"
 
 // constant defs
 
