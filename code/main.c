@@ -12,31 +12,41 @@
 #define SHT30RHPIN AN5
 #define SHT30TEMPPIN AN6
 
+#define TXCYCLES 6
+#define SLEEPMINUTES 10
 
 // global variables
-float hum, temp, vhum, vtemp, van1;
+
 
 // func decs
-void measTest();
+void initTestLED();
 
 // main program
 int main(void) {
     __startup(); // perform startup routine
+                 // will only execute once on device reset
     
-    
-    // cfg test led
-    _TRISB3 = 0; // rb3 output
-    _ODB3 = 0; // non-od
-    
+    initTestLED();
+    __delay_ms(2000);
     
     while (1) {
-        van1 = adcMeasure(AN1);
-        vhum = adcMeasure(AN5);
-        hum = sht30RH(SHT30RHPIN);
-        vtemp = adcMeasure(AN6);
-        temp = sht30Temp(SHT30TEMPPIN);
-        __delay_ms(100);
+        if (fast) {
+            // active monitoring state
+            _RB3 = 1;
+            
+        } else {
+            // logging monitoring state
+            _RB3 = 0;
+            
+        }
+        Sleep();
     }
+    
     return 0;
 }
 
+
+void initTestLED() {
+    _TRISB3 = 0;
+    _ODC3 = 0;
+}

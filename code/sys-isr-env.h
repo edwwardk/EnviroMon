@@ -17,11 +17,13 @@
 // int0 isr
 void __attribute__((__interrupt__, no_auto_psv)) _INT0Interrupt(void) {
     _INT0IF = 0; // reset int0 flag
+    fastMode(); // enable fast mode
 }
 
 // int1 isr
 void __attribute__((__interrupt__, no_auto_psv)) _INT1Interrupt(void) {
     _INT1IF = 0; // reset int1 flag
+    slowMode(); // enable slow mode
 }
 
 // rtcc isr

@@ -16,6 +16,7 @@
 #include "sys-cfg-env.h"
 
 // constant defs
+#define _SPI1EN SPI1STATbits.SPIEN
 
 // global variables
 
@@ -24,7 +25,12 @@
 void spiInit();
 
 void spiInit() {
+    _SPI1MD = 0; // enable spi1 power
+    _SPI1EN = 0; // disable spi1 module
     
+    
+    
+    _SPI1EN = 1; // enable spi1 module
 }
 #endif
 

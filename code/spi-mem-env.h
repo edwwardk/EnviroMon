@@ -38,11 +38,8 @@ void memWrite();
 
 // initialize memory
 void memInit() {
-    // enable spi2 power
-    _SPI2MD = 0;
-    
-    // disable spi module
-    _SPI2EN = 0;
+    _SPI2MD = 0; // enable spi2 power
+    _SPI2EN = 0; // disable spi module
     
     // pin dirs
     _TRISC6 = 1; // MEMDI input
@@ -55,9 +52,6 @@ void memInit() {
     _ODC8 = 0; // MEMDO non od
     _ODC9 = 0; // MEMCLK non od
     _ODC7 = 0; // MEMCS non od
-    
-    // disable spi2 power
-    _SPI2MD = 1;
 }
 #endif
 

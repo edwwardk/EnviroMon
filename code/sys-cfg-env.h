@@ -16,7 +16,7 @@
 #pragma config DSWDTOSC = LPRC          // Deep Sleep Watchdog Timer Oscillator Select (DSWDT uses Low Power RC Oscillator (LPRC))
 #pragma config RTCOSC = LPRC            // RTCC Reference Oscillator Select (RTCC uses Low Power RC Oscillator (LPRC))
 #pragma config DSBOREN = OFF            // Deep Sleep BOR Enable bit (BOR disabled in Deep Sleep)
-#pragma config DSWDTEN = ON             // Deep Sleep Watchdog Timer (DSWDT enabled)
+#pragma config DSWDTEN = OFF            // Deep Sleep Watchdog Timer (DSWDT disabled)
 
 // CONFIG3
 #pragma config WPFP = WPFP63            // Write Protection Flash Page Segment Boundary (Highest Page (same as page 42))
@@ -32,8 +32,8 @@
 #pragma config IOL1WAY = OFF            // IOLOCK One-Way Set Enable (The IOLOCK bit can be set and cleared using the unlock sequence)
 #pragma config OSCIOFNC = ON            // OSCO Pin Configuration (OSCO pin functions as port I/O (RA3))
 #pragma config FCKSM = CSECME           // Clock Switching and Fail-Safe Clock Monitor (Sw Enabled, Mon Enabled)
-#pragma config FNOSC = FRCDIV           // Initial Oscillator Select (Fast RC Oscillator with Postscaler (FRCDIV))
-#pragma config PLL96MHZ = OFF           // 96MHz PLL Startup Select (96 MHz PLL Startup is enabled by user in software( controlled with the PLLEN bit))
+#pragma config FNOSC = FRC              // Initial Oscillator Select (Fast RC Oscillator (FRC))
+#pragma config PLL96MHZ = ON            // 96MHz PLL Startup Select (96 MHz PLL Startup is enabled automatically on start-up)
 #pragma config PLLDIV = DIV12           // USB 96 MHz PLL Prescaler Select (Oscillator input divided by 12 (48 MHz input))
 #pragma config IESO = ON                // Internal External Switchover (IESO mode (Two-Speed Start-up) enabled)
 
@@ -48,12 +48,14 @@
 #pragma config JTAGEN = OFF             // JTAG Port Enable (JTAG port is disabled)
 
 // fcyc define
-#define FCY 8000000
+#define FCY 4000000 // fcy = fosc/2
 
 // system includes
 #include <xc.h>
+#include <p24fj64gb004.h>
 #include <libpic30.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 // constant defs
 // pps inputs
@@ -82,6 +84,7 @@
 #define VDDVAL 2.8 // system vdd
 
 // global variables
+uint8_t fast;
 
 // func decs
 void sysInit();
@@ -187,6 +190,7 @@ void pmdDisableAll() {
 #include "adc-env.h"
 #include "sys-debug-env.h"
 #include "sys-rtcc-env.h"
+#include "sys-intcfg-env.h"
 
 // device specific includes
 #include "adc-sht30-env.h"
@@ -198,6 +202,6 @@ void pmdDisableAll() {
 #include "sys-start-env.h"
 
 // isrs includes
-#include "sys-intcfg-env.h"
+#include "sys-isr-env.h"
 
 #endif
