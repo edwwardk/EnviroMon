@@ -1,9 +1,22 @@
 /* 
- * TEMPLATE.h
+ * sys-intcfg-env.h
  * written by edward kneller
  * 
- * configures pps, control regs, initial states
- * includes xc.h
+ * configures external interrupt inputs
+ * 
+ * INT0 uses pin43/rb7
+ * INT1 uses pin11/rb13
+ * 
+ * 
+ * ~~~ defines ~~~
+ * 
+ * 
+ * ~~~ global variables ~~~
+ * 
+ * 
+ * ~~~ functions ~~~
+ * void intInit();
+ * - initializes external INT0 and INT1
  * 
  */
 

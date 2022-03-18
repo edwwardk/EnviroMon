@@ -16,6 +16,8 @@
 #include "sys-cfg-env.h"
 
 // constant defs
+#define ACK 0
+#define NACK 1
 
 // global variables
 
@@ -28,15 +30,14 @@ void i2cStop();
 void i2cRestart();
 
 void i2cTXByte(uint8_t);
-uint8_t i2cRXByte();
+uint8_t i2cRXByte(uint8_t);
 
 // initialize i2c module
 void i2cInit() {
     _I2C1MD = 0; // enable i2c1 power
     I2C1CONbits.I2CEN = 0; // disable i2c1 module
     
-    I2C1BRG = 9; // fscl = ~100kHz
-    I2C1CONbits.DISSLW = 1; // TODO: check if needed
+    I2C1BRG = 39; // fscl = ~100kHz
     I2C1STATbits.ACKSTAT = 1; // force ackstat high
     
     I2C1CONbits.I2CEN = 1; // enable i2c1 module
@@ -50,9 +51,10 @@ void i2cTXByte(uint8_t buf) {
 }
 
 // receive byte
-uint8_t i2cRXByte() {
+uint8_t i2cRXByte(uint8_t ack) {
     I2C1CONbits.RCEN = 1; // enable receive mode
     while (!I2C1STATbits.RBF); // wait for read
+    I2C1CONbits.ACKDT = ack; // to ack? or not to ack?
     while (I2C1CONbits.ACKEN); // wait for ack
     return I2C1RCV;
 }

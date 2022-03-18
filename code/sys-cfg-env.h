@@ -1,10 +1,18 @@
 /* 
- * TEMPLATE.h
+ * sys-cfg-env.h
  * written by edward kneller
  * 
- * configures pps, control regs, initial states
- * includes xc.h
+ * sets configuration bits
+ * defines pps pins
+ * configures misc system parts
  * 
+ * ~~~ defines ~~~
+ * 
+ * 
+ * ~~~ global variables ~~~
+ * 
+ * 
+ * ~~~ functions ~~~
  */
 
 // include catch clause
@@ -93,7 +101,7 @@ void pmdDisableAll();
 // initialize misc system cfgs
 void sysInit() {
     // pps
-    __builtin_write_OSCCONL(OSCCON & _OSCCON_IOLOCK_MASK); // unlock pps
+    __builtin_write_OSCCONL(OSCCON & 0xBF); // unlock pps
     // inputs
     _INT1R = INT1; // int1
     _SDI1R = MISO; // miso
@@ -104,7 +112,7 @@ void sysInit() {
     SCLK = _RPOUT_SCK1OUT; // sclk
     MEMDO = _RPOUT_SDO2; //  memdo
     MEMCLK = _RPOUT_SCK2OUT; // memclk
-    __builtin_write_OSCCONL(OSCCON | _OSCCON_IOLOCK_MASK); // lock pps
+    __builtin_write_OSCCONL(OSCCON | 0x40); // lock pps
     
     
     _NSTDIS = 1; // disable interrupt nesting
@@ -195,7 +203,8 @@ void pmdDisableAll() {
 // device specific includes
 #include "adc-sht30-env.h"
 #include "i2c-rtc-env.h"
-#include "i2c-adc-env.h"
+#include "i2c-batmon-env.h"
+#include "spi-lora-env.h"
 #include "spi-mem-env.h"
 
 // startup sequence

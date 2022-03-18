@@ -1,10 +1,17 @@
 /* 
- * TEMPLATE.h
+ * template.h
  * written by edward kneller
  * 
- * configures pps, control regs, initial states
- * includes xc.h
+ * template description
  * 
+ * 
+ * ~~~ defines ~~~
+ * 
+ * 
+ * ~~~ global variables ~~~
+ * 
+ * 
+ * ~~~ functions ~~~
  */
 
 // include catch clause

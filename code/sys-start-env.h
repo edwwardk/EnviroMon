@@ -1,9 +1,20 @@
 /* 
- * envcfg.h
+ * sys-start-env.h
  * written by edward kneller
  * 
- * configures startup sequence
+ * determines startup sequence
+ * runs once on reset/power on
  * 
+ * 
+ * ~~~ defines ~~~
+ * 
+ * 
+ * ~~~ global variables ~~~
+ * startComplete - tracks if startup has been performed
+ * 
+ * ~~~ functions ~~~
+ * void __startup();
+ * - performs startup routine
  */
 
 // include catch clause
@@ -34,6 +45,8 @@ void __startup() {
     intInit(); // init external interrupts
     adcInit(); // init adc module
     i2cInit(); // init i2c module
+    spi1Init(); // init spi1 module
+    spi2Init(); // init spi2 module
     
     // set start complete
     startComplete = 1;

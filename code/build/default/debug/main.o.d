@@ -1,4 +1,4 @@
-build/default/production/main.o:  \
+build/default/debug/main.o:  \
 main.c  \
 sys-cfg-env.h  \
 i2c-env.h  \
