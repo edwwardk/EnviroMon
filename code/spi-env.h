@@ -24,13 +24,26 @@
 // func decs
 void spi1Init();
 void spi2Init();
-void spiWrite(uint8_t, uint8_t);
-uint8_t spiRead(uint8_t);
+void spi1_write(uint8_t);
+uint8_t spi1_read();
 
 // init spi1 module (main/rf)
 void spi1Init() {
     _SPI1MD = 0; // enable spi1 power
     SPI1STATbits.SPIEN = 0; // disable spi1 module
+    
+    // pps
+    __builtin_write_OSCCONL(OSCCON & 0xBF); // unlock pps
+    // inputs
+    _SDI1R = MISO; // miso
+    _SDI2R = MEMDI; // memdi
+    
+    // outputs
+    MOSI = _RPOUT_SDO1; // mosi
+    SCLK = _RPOUT_SCK1OUT; // sclk
+    MEMDO = _RPOUT_SDO2; //  memdo
+    MEMCLK = _RPOUT_SCK2OUT; // memclk
+    __builtin_write_OSCCONL(OSCCON | 0x40); // lock pps
     
     // pin directions
     _TRISC5 = 1; // MISO input
@@ -44,10 +57,12 @@ void spi1Init() {
     
     _PCFG12 = 1; // set SCLK digital
     
+    
     SPI1CON1bits.MSTEN = 1; // enable master mode
     SPI1CON1bits.CKP = 0; // clock idle low
     SPI1CON1bits.SMP = 0; // sample in middle
     SPI1CON1bits.CKE = 1; // data changes on falling edge
+    SPI1STATbits.SPIROV = 0; // clear overflow
     
     // set spi freq to 1MHz
     SPI1CON1bits.SPRE = 0b111; // 1:1 secondary prescale
@@ -77,26 +92,18 @@ void spi2Init() {
 }
 
 // write a byte
-void spiWrite(uint8_t bus, uint8_t data) {
-    if (bus == 1) {
-        while (SPI1STATbits.SPITBF); // wait for tx to start
-        SPI1BUF = data; // write data to buffer
-    } else if (bus == 2) {
-        while (SPI2STATbits.SPITBF); // wait for tx to start
-        SPI2BUF = data; // write data to buffer
-    }
+void spi1_write(uint8_t data) {
+    //__delay_us(10);
+    SPI1BUF = data; // write data to buffer
+    while (SPI1STATbits.SPITBF); // wait for tx to start
 }
 
 // read a byte
-uint8_t spiRead(uint8_t bus) {
-    if (bus == 1) {
-        while (!SPI1STATbits.SPIRBF); // wait for rx full
-        return SPI1BUF; // return buffer
-    } else if (bus == 2) {
-        while (!SPI2STATbits.SPIRBF); // wait for rx full
-        return SPI2BUF; // return buffer
-    }
-    return 0;
+uint8_t spi1_read() {
+    //__delay_us(10);
+    //SPI1BUF = 0x00; // initiate bus cycle
+    while (!SPI1STATbits.SPIRBF); // wait for rx full
+    return SPI1BUF;// & 0xFF; // return buffer
 }
 #endif
 

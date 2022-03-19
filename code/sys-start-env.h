@@ -30,8 +30,6 @@ uint8_t startComplete = 0;
 
 // func decs
 void __startup();
-void fastMode();
-void slowMode();
 
 // perform startup initializations
 void __startup() {
@@ -41,8 +39,8 @@ void __startup() {
     }
     
     // system inits
-    sysInit(); // init misc sys cfg
-    pmdDisableAll(); // disable all peripheral modules
+    sys_init(); // init misc sys cfg
+    pmd_disable_all(); // disable all peripheral modules
     
     // module inits
     intInit(); // init external interrupts
@@ -52,23 +50,13 @@ void __startup() {
     spi2Init(); // init spi2 module
     
     // device inits
-    
+    lora_init(); // init lora module
     
     // set start complete
     startComplete = 1;
+    __delay_ms(100); // setup time
 }
 
-// set fast mode
-void fastMode() {
-    // disable rtcc interrupt
-    fast = 1; // enable fast mode bit
-}
-
-// set slow mode
-void slowMode() {
-    // enable rtcc interrupt
-    fast = 0; // disable fast mode bit
-}
 #endif
 
 

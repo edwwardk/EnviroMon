@@ -39,7 +39,7 @@
 #pragma config I2C1SEL = PRI            // I2C1 Pin Select bit (Use default SCL1/SDA1 pins for I2C1 )
 #pragma config IOL1WAY = OFF            // IOLOCK One-Way Set Enable (The IOLOCK bit can be set and cleared using the unlock sequence)
 #pragma config OSCIOFNC = ON            // OSCO Pin Configuration (OSCO pin functions as port I/O (RA3))
-#pragma config FCKSM = CSECME           // Clock Switching and Fail-Safe Clock Monitor (Sw Enabled, Mon Enabled)
+#pragma config FCKSM = CSDCMD           // Clock Switching and Fail-Safe Clock Monitor (Sw Disabled, Mon Disabled)
 #pragma config FNOSC = FRC              // Initial Oscillator Select (Fast RC Oscillator (FRC))
 #pragma config PLL96MHZ = ON            // 96MHz PLL Startup Select (96 MHz PLL Startup is enabled automatically on start-up)
 #pragma config PLLDIV = DIV12           // USB 96 MHz PLL Prescaler Select (Oscillator input divided by 12 (48 MHz input))
@@ -92,34 +92,19 @@
 #define VDDVAL 2.8 // system vdd
 
 // global variables
-uint8_t fast;
+
 
 // func decs
-void sysInit();
-void pmdDisableAll();
+void sys_init();
+void pmd_disable_all();
 
 // initialize misc system cfgs
-void sysInit() {
-    // pps
-    __builtin_write_OSCCONL(OSCCON & 0xBF); // unlock pps
-    // inputs
-    _INT1R = INT1; // int1
-    _SDI1R = MISO; // miso
-    _SDI2R = MEMDI; // memdi
-    
-    // outputs
-    MOSI = _RPOUT_SDO1; // mosi
-    SCLK = _RPOUT_SCK1OUT; // sclk
-    MEMDO = _RPOUT_SDO2; //  memdo
-    MEMCLK = _RPOUT_SCK2OUT; // memclk
-    __builtin_write_OSCCONL(OSCCON | 0x40); // lock pps
-    
-    
+void sys_init() {
     _NSTDIS = 1; // disable interrupt nesting
 }
 
 // disable all modules
-void pmdDisableAll() {
+void pmd_disable_all() {
     // disable all timers
     _T5MD = 1;
     _T4MD = 1;

@@ -33,6 +33,11 @@ void intInit();
 
 // configure external interrupts
 void intInit() {
+    // pps
+    __builtin_write_OSCCONL(OSCCON & 0xBF); // unlock pps
+    _INT1R = INT1; // int1
+    __builtin_write_OSCCONL(OSCCON | 0x40); // lock pps
+    
     // clear states
     _RB7 = 0; // int0
     _RB13 = 0; // int1

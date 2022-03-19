@@ -20,7 +20,6 @@
 
 // func decs
 void initTestLED();
-void testLora();
 
 // main program
 int main(void) {
@@ -28,25 +27,23 @@ int main(void) {
                  // will only execute once on device reset
     
     initTestLED();
-    testLora();
-    __delay_ms(500);
     
-    uint8_t seconds1, seconds2;
-    seconds1 = rtc_time(SECOND);
+    __delay_ms(100);
     
-    __delay_ms(1000);
-    __delay_ms(1000);
-    __delay_ms(1000);
-    __delay_ms(1000);
+    uint8_t lora_data[10], i;
     
-    seconds2 = rtc_time(SECOND);
-    
+    for (i = 0; i < 10; i++) {
+        lora_data[i] = lora_read(i);
+    }
     
     float vbat = battery_sample();
     
-    uint16_t loraData1 = loraRead(0x42);
-    uint16_t loraData2 = loraRead(0x12);
     
+    //uint16_t loraData1 = loraRead(0x42);
+    //uint16_t loraData2 = loraRead(0x12);
+    
+    
+    _RB3 = 1; // turn LED on
     while(1);
     return 0;
 }
@@ -55,9 +52,4 @@ int main(void) {
 void initTestLED() {
     _TRISB3 = 0;
     _ODC3 = 0;
-}
-
-void testLora() {
-    RFEN = 1; // enable rf regulator
-    RFRST = 1; // keep reset high
 }
