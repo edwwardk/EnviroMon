@@ -79,20 +79,20 @@ xc16-ld 1.35 (A)
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x3ca           0x5af  (1455)
-.text                        0x5ca               0x442           0x663  (1635)
-.init.delay32                0xa0c                0x1c            0x2a  (42)
-.dinit                       0xa28                 0x8             0xc  (12)
+.text                        0x5ca               0x4d6           0x741  (1857)
+.init.delay32                0xaa0                0x1c            0x2a  (42)
+.dinit                       0xabc                 0x8             0xc  (12)
 
-                 Total "program" memory used (bytes):          0xc48  (3144) 4%
+                 Total "program" memory used (bytes):          0xd26  (3366) 5%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                        0x800                   0             0x2  (2)
+.nbss                        0x800                   0             0x4  (4)
 
-                 Total "data" memory used (bytes):            0x2  (2) <1%
+                 Total "data" memory used (bytes):            0x4  (4) <1%
 
 
 Dynamic Memory Usage
@@ -100,18 +100,20 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x802                              0x1ffe  (8190)
+stack                        0x804                              0x1ffc  (8188)
 
-                 Maximum dynamic memory (bytes):         0x1ffe  (8190)
+                 Maximum dynamic memory (bytes):         0x1ffc  (8188)
 
 
 External Symbols in Data Memory (by address):
 
                     0x0800                  _fast
                     0x0801                  _startComplete
+                    0x0802                  _adata
 
 External Symbols in Data Memory (by name):
 
+                    0x0802                  _adata
                     0x0800                  _fast
                     0x0801                  _startComplete
 
@@ -119,8 +121,8 @@ External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00023c                  __psv_init
-                  0x000252                  __data_init_standard
                   0x000252                  __data_init
+                  0x000252                  __data_init_standard
                   0x0002c8                  __INT0Interrupt
                   0x0002e6                  __INT1Interrupt
                   0x000304                  __RTCCInterrupt
@@ -140,12 +142,12 @@ External Symbols in Program Memory (by address):
                   0x0005a0                  __funpack
                   0x0005ca                  _sysInit
                   0x000640                  _pmdDisableAll
-                  0x000684                  _i2cInit
-                  0x000696                  _i2cTXByte
-                  0x0006b8                  _i2cRXByte
-                  0x0006ee                  _i2cStart
-                  0x000700                  _i2cStop
-                  0x000712                  _i2cRestart
+                  0x000684                  _i2c_init
+                  0x000696                  _i2c_tx_byte
+                  0x0006b8                  _i2c_rx_byte
+                  0x0006ee                  _i2c_start
+                  0x000700                  _i2c_stop
+                  0x000712                  _i2c_restart
                   0x000724                  _spi1Init
                   0x000756                  _spi2Init
                   0x000772                  _spiWrite
@@ -159,17 +161,19 @@ External Symbols in Program Memory (by address):
                   0x00089a                  _intInit
                   0x0008b4                  _sht30RH
                   0x0008d2                  _sht30Temp
-                  0x0008f0                  _batSingleSample
-                  0x000936                  _mpc3021MultiSample
-                  0x00093e                  _loraWrite
-                  0x000974                  _loraRead
-                  0x000994                  ___startup
-                  0x0009b6                  _fastMode
-                  0x0009c0                  _slowMode
-                  0x0009c8                  _main
-                  0x0009f8                  _initTestLED
-                  0x000a02                  _testLora
-                  0x000a0c                  ___delay32
+                  0x0008f0                  _rtc_write_byte
+                  0x00090a                  _rtc_read_byte
+                  0x00092c                  _rtc_time
+                  0x00097c                  _battery_sample
+                  0x0009c6                  _loraWrite
+                  0x0009fc                  _loraRead
+                  0x000a1c                  ___startup
+                  0x000a3e                  _fastMode
+                  0x000a48                  _slowMode
+                  0x000a50                  _main
+                  0x000a8c                  _initTestLED
+                  0x000a96                  _testLora
+                  0x000aa0                  ___delay32
 
 External Symbols in Program Memory (by name):
 
@@ -179,12 +183,12 @@ External Symbols in Program Memory (by name):
                   0x000304                  __RTCCInterrupt
                   0x00030c                  __USB1Interrupt
                   0x00031c                  ___addsf3
-                  0x000a0c                  ___delay32
+                  0x000aa0                  ___delay32
                   0x0003d6                  ___divsf3
                   0x000542                  ___floatundisf
                   0x00045a                  ___floatunsisf
                   0x0004da                  ___mulsf3
-                  0x000994                  ___startup
+                  0x000a1c                  ___startup
                   0x00031a                  ___subsf3
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
@@ -198,34 +202,36 @@ External Symbols in Program Memory (by name):
                   0x000200                  __resetPRI
                   0x0007e0                  _adcInit
                   0x000840                  _adcMeasure
-                  0x0008f0                  _batSingleSample
+                  0x00097c                  _battery_sample
                   0x00088c                  _debugDisable
                   0x000884                  _debugEnable
                   0x000878                  _debugInit
-                  0x0009b6                  _fastMode
-                  0x000684                  _i2cInit
-                  0x0006b8                  _i2cRXByte
-                  0x000712                  _i2cRestart
-                  0x0006ee                  _i2cStart
-                  0x000700                  _i2cStop
-                  0x000696                  _i2cTXByte
-                  0x0009f8                  _initTestLED
+                  0x000a3e                  _fastMode
+                  0x000684                  _i2c_init
+                  0x000712                  _i2c_restart
+                  0x0006b8                  _i2c_rx_byte
+                  0x0006ee                  _i2c_start
+                  0x000700                  _i2c_stop
+                  0x000696                  _i2c_tx_byte
+                  0x000a8c                  _initTestLED
                   0x00089a                  _intInit
-                  0x000974                  _loraRead
-                  0x00093e                  _loraWrite
-                  0x0009c8                  _main
-                  0x000936                  _mpc3021MultiSample
+                  0x0009fc                  _loraRead
+                  0x0009c6                  _loraWrite
+                  0x000a50                  _main
                   0x000640                  _pmdDisableAll
+                  0x00090a                  _rtc_read_byte
+                  0x00092c                  _rtc_time
+                  0x0008f0                  _rtc_write_byte
                   0x000894                  _rtccInit
                   0x0008b4                  _sht30RH
                   0x0008d2                  _sht30Temp
-                  0x0009c0                  _slowMode
+                  0x000a48                  _slowMode
                   0x000724                  _spi1Init
                   0x000756                  _spi2Init
                   0x0007aa                  _spiRead
                   0x000772                  _spiWrite
                   0x0005ca                  _sysInit
-                  0x000a02                  _testLora
+                  0x000a96                  _testLora
 
 Memory Configuration
 
@@ -341,26 +347,26 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x3327
+.debug_info       0x000000       0x3417
  *(.debug_info)
- .debug_info      0x000000       0x3327 build/default/production/main.o
+ .debug_info      0x000000       0x3417 build/default/production/main.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x1c3
+.debug_abbrev     0x000000        0x1e6
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x1c3 build/default/production/main.o
+ .debug_abbrev    0x000000        0x1e6 build/default/production/main.o
 
-.debug_line       0x000000        0x312
+.debug_line       0x000000        0x342
  *(.debug_line)
- .debug_line      0x000000        0x312 build/default/production/main.o
+ .debug_line      0x000000        0x342 build/default/production/main.o
 
-.debug_frame      0x000000        0x430
+.debug_frame      0x000000        0x468
  *(.debug_frame)
- .debug_frame     0x000000        0x430 build/default/production/main.o
+ .debug_frame     0x000000        0x468 build/default/production/main.o
 
-.debug_str        0x000000        0x18b
+.debug_str        0x000000        0x198
  *(.debug_str)
- .debug_str       0x000000        0x18b build/default/production/main.o
+ .debug_str       0x000000        0x198 build/default/production/main.o
 
 .debug_loc
  *(.debug_loc)
@@ -369,10 +375,10 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x22b
+                  0x000000        0x257
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000        0x22b build/default/production/main.o
+                  0x000000        0x257 build/default/production/main.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -1270,10 +1276,11 @@ __c30_signature
  __c30_signature
                   0x0004f4          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(funpack.eo)
 
-.nbss               0x0800          0x2
- .nbss              0x0800          0x2 build/default/production/main.o
+.nbss               0x0800          0x4
+ .nbss              0x0800          0x4 build/default/production/main.o
                     0x0800                  _fast
                     0x0801                  _startComplete
+                    0x0802                  _adata
 
 .config_JTAGEN    0x00abfe          0x2
  .config_JTAGEN
@@ -1310,16 +1317,16 @@ __c30_signature
  .ivt._USB1Interrupt
                   0x0000c0          0x2 build/default/production/main.o
 
-.text             0x0005ca        0x442
- .text            0x0005ca        0x442 build/default/production/main.o
+.text             0x0005ca        0x4d6
+ .text            0x0005ca        0x4d6 build/default/production/main.o
                   0x0005ca                  _sysInit
                   0x000640                  _pmdDisableAll
-                  0x000684                  _i2cInit
-                  0x000696                  _i2cTXByte
-                  0x0006b8                  _i2cRXByte
-                  0x0006ee                  _i2cStart
-                  0x000700                  _i2cStop
-                  0x000712                  _i2cRestart
+                  0x000684                  _i2c_init
+                  0x000696                  _i2c_tx_byte
+                  0x0006b8                  _i2c_rx_byte
+                  0x0006ee                  _i2c_start
+                  0x000700                  _i2c_stop
+                  0x000712                  _i2c_restart
                   0x000724                  _spi1Init
                   0x000756                  _spi2Init
                   0x000772                  _spiWrite
@@ -1333,20 +1340,22 @@ __c30_signature
                   0x00089a                  _intInit
                   0x0008b4                  _sht30RH
                   0x0008d2                  _sht30Temp
-                  0x0008f0                  _batSingleSample
-                  0x000936                  _mpc3021MultiSample
-                  0x00093e                  _loraWrite
-                  0x000974                  _loraRead
-                  0x000994                  ___startup
-                  0x0009b6                  _fastMode
-                  0x0009c0                  _slowMode
-                  0x0009c8                  _main
-                  0x0009f8                  _initTestLED
-                  0x000a02                  _testLora
+                  0x0008f0                  _rtc_write_byte
+                  0x00090a                  _rtc_read_byte
+                  0x00092c                  _rtc_time
+                  0x00097c                  _battery_sample
+                  0x0009c6                  _loraWrite
+                  0x0009fc                  _loraRead
+                  0x000a1c                  ___startup
+                  0x000a3e                  _fastMode
+                  0x000a48                  _slowMode
+                  0x000a50                  _main
+                  0x000a8c                  _initTestLED
+                  0x000a96                  _testLora
 
-.init.delay32     0x000a0c         0x1c
- .init.delay32    0x000a0c         0x1c c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                  0x000a0c                  ___delay32
+.init.delay32     0x000aa0         0x1c
+ .init.delay32    0x000aa0         0x1c c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x000aa0                  ___delay32
 
-.dinit            0x000a28          0x8
- .dinit           0x000a28          0x8 data_init
+.dinit            0x000abc          0x8
+ .dinit           0x000abc          0x8 data_init

@@ -23,17 +23,17 @@
 
 
 // func decs
-void i2cInit();
+void i2c_init();
 
-void i2cStart();
-void i2cStop();
-void i2cRestart();
+void i2c_start();
+void i2c_stop();
+void i2c_restart();
 
-void i2cTXByte(uint8_t);
-uint8_t i2cRXByte(uint8_t);
+void i2c_tx_byte(uint8_t);
+uint8_t i2c_rx_byte(uint8_t);
 
 // initialize i2c module
-void i2cInit() {
+void i2c_init() {
     _I2C1MD = 0; // enable i2c1 power
     I2C1CONbits.I2CEN = 0; // disable i2c1 module
     
@@ -44,14 +44,14 @@ void i2cInit() {
 }
 
 // send byte
-void i2cTXByte(uint8_t buf) {
+void i2c_tx_byte(uint8_t buf) {
     I2C1TRN = buf; // write byte to buffer
     while (I2C1STATbits.TBF); // wait for write
     while (I2C1STATbits.TRSTAT); // wait for transmit
 }
 
 // receive byte
-uint8_t i2cRXByte(uint8_t ack) {
+uint8_t i2c_rx_byte(uint8_t ack) {
     I2C1CONbits.RCEN = 1; // enable receive mode
     while (!I2C1STATbits.RBF); // wait for read
     I2C1CONbits.ACKDT = ack; // to ack? or not to ack?
@@ -60,19 +60,19 @@ uint8_t i2cRXByte(uint8_t ack) {
 }
 
 // send start bit
-void i2cStart() {
+void i2c_start() {
     I2C1CONbits.SEN = 1; // set start bit
     while (I2C1CONbits.SEN); // wait for start bit clear
 }
 
 // send stop bit
-void i2cStop() {
+void i2c_stop() {
     I2C1CONbits.PEN = 1; // set stop bit
     while (I2C1CONbits.PEN); // wait for stop bit clear
 }
 
 // send restart bit
-void i2cRestart() {
+void i2c_restart() {
     I2C1CONbits.RSEN = 1; // set restart bit
     while (I2C1CONbits.RSEN); // wait for restart bit clear
 }

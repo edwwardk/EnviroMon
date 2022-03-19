@@ -40,13 +40,19 @@ void __startup() {
         return;
     }
     
+    // system inits
     sysInit(); // init misc sys cfg
     pmdDisableAll(); // disable all peripheral modules
+    
+    // module inits
     intInit(); // init external interrupts
     adcInit(); // init adc module
-    i2cInit(); // init i2c module
+    i2c_init(); // init i2c module
     spi1Init(); // init spi1 module
     spi2Init(); // init spi2 module
+    
+    // device inits
+    
     
     // set start complete
     startComplete = 1;
