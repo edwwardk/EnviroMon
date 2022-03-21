@@ -44,6 +44,7 @@ void lora_init() {
     // set states
     RFEN = 1; // enable rf regulator
     RFRST = 1; // hold rf reset high
+    RFCS = 1; // set rf chip select high
 }
 
 // write bytes to lora module
@@ -52,8 +53,8 @@ void lora_write(uint8_t address, uint8_t data) {
     
     RFCS = 0; // select chip
     __delay_us(1);
-    spi1_write(address); // write address
-    spi1_write(data); // write all data bytes
+    spi1_write(address); // send address
+    spi1_write(data); // send byte
     RFCS = 1; // deselect chip
 }
 
@@ -64,9 +65,8 @@ uint8_t lora_read(uint8_t address) {
     address = address & 0x7F; // set msb to 0 for read
     
     RFCS = 0; // select chip
-    __delay_us(1);
-    spi1_write(address); // write address
-    data = spi1_read();
+    spi1_write(address); // send address
+    data = spi1_read(); // read byte
     RFCS = 1; // deselect chip
     return data;
 }

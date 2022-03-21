@@ -19,37 +19,40 @@
 
 
 // func decs
-void initTestLED();
+
 
 // main program
 int main(void) {
     __startup(); // perform startup routine
                  // will only execute once on device reset
     
-    initTestLED();
+    _TRISB3 = 0;
+    _ODC3 = 0;
     
-    __delay_ms(100);
     
-    uint8_t lora_data[10], i;
-    
-    for (i = 0; i < 10; i++) {
-        lora_data[i] = lora_read(i);
+    /*
+    float vbat;
+    while (1) {
+    vbat = battery_sample();
     }
     
-    float vbat = battery_sample();
+    uint8_t test;
+    while (1) {
+        test = spi1_read();
+    }
+     */
     
+    uint8_t lora_data[10], loraid, i;
     
-    //uint16_t loraData1 = loraRead(0x42);
-    //uint16_t loraData2 = loraRead(0x12);
-    
+    while (1) {
+        loraid = lora_read(0x42); // read hoperf id
+        for (i = 0; i < 10; i++) {
+            lora_data[i] = lora_read(i); // read address i
+            __delay_us(10);
+        }
+    }
     
     _RB3 = 1; // turn LED on
     while(1);
     return 0;
-}
-
-
-void initTestLED() {
-    _TRISB3 = 0;
-    _ODC3 = 0;
 }

@@ -41,6 +41,7 @@ void __startup() {
     // system inits
     sys_init(); // init misc sys cfg
     pmd_disable_all(); // disable all peripheral modules
+    //pmd_enable_used(); // enable used/unknown peripherals
     
     // module inits
     intInit(); // init external interrupts
@@ -52,8 +53,8 @@ void __startup() {
     // device inits
     lora_init(); // init lora module
     
-    // set start complete
-    startComplete = 1;
+    
+    startComplete = 1; // set start complete
     __delay_ms(100); // setup time
 }
 

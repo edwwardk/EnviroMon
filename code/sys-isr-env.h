@@ -37,11 +37,13 @@
 // int0 isr
 void __attribute__((__interrupt__, no_auto_psv)) _INT0Interrupt(void) {
     _INT0IF = 0; // reset int0 flag
+    RFEN = 0;
 }
 
 // int1 isr
 void __attribute__((__interrupt__, no_auto_psv)) _INT1Interrupt(void) {
     _INT1IF = 0; // reset int1 flag
+    RFEN = 1;
 }
 
 // rtcc isr

@@ -46,6 +46,8 @@ void intInit() {
     _TRISB7 = 1; // int0
     _TRISB13 = 1; // int1
     
+    _PCFG11 = 1; // set int1 digital
+    
     // positive edge triggered
     _INT0EP = 0; // int0
     _INT1EP = 0; // int1
