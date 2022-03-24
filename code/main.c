@@ -26,12 +26,13 @@ int main(void) {
     _TRISB3 = 0;
     _ODC3 = 0;
     
-    /*
+
     float vbat;
+    
     while (1) {
-    vbat = battery_sample();
+        vbat = battery_sample();
+        __delay_us(20);
     }
-    */
     
     
     

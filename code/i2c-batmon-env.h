@@ -16,7 +16,7 @@
 #include "sys-cfg-env.h"
 
 // constant defs
-#define ADCADDRESS 0b10010111
+#define ADCADDRESS 0x97
 
 // global variables
 
@@ -26,19 +26,20 @@ float battery_sample();
 
 // sample battery voltage
 float battery_sample() {
-    uint8_t msb, lsb;
-    uint16_t data = 0;
+    uint8_t msb8, lsb8;
+    uint16_t msb16 = 0, lsb16 = 0, adata = 0;
     
     i2c_start(); // send start bit
     i2c_tx_byte(ADCADDRESS); // transmit address byte
-    msb = i2c_rx_byte(ACK); // receive first byte
-    lsb = i2c_rx_byte(NACK); // receive second byte
+    msb8 = i2c_rx_byte(ACK); // receive first byte
+    lsb8 = i2c_rx_byte(NACK); // receive second byte
     i2c_stop(); // send stop bit
     
-    data = msb & 0x0F; // add msb to data
-    data = (data << 6) | ((lsb & 0xFC) >> 2); // add msb to lsb
+    msb16 = (msb16 | msb8) << 6;
+    lsb16 = (lsb16 | (lsb8 & 0xFC)) >> 2; 
+    adata = msb16 | lsb16;
     
-    return  ((data * 2.8) / 1024.0) * 2;
+    return (((float)adata * (2.8/1024.0)) * 2.0) + 0.43;
 }
 #endif
 

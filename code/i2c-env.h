@@ -35,12 +35,12 @@ uint8_t i2c_rx_byte(uint8_t);
 // initialize i2c module
 void i2c_init() {
     _I2C1MD = 0; // enable i2c1 power
-    I2C1CONbits.I2CEN = 0; // disable i2c1 module
+    I2C1CONbits.I2CEN = 1; // disable i2c1 module
     
     I2C1BRG = 39; // fscl = ~100kHz
     I2C1STATbits.ACKSTAT = 1; // force ackstat high
     
-    I2C1CONbits.I2CEN = 1; // enable i2c1 module
+    //I2C1CONbits.I2CEN = 1; // enable i2c1 module
 }
 
 // send byte
@@ -55,6 +55,7 @@ uint8_t i2c_rx_byte(uint8_t ack) {
     I2C1CONbits.RCEN = 1; // enable receive mode
     while (!I2C1STATbits.RBF); // wait for read
     I2C1CONbits.ACKDT = ack; // to ack? or not to ack?
+    I2C1CONbits.ACKEN = 1; // send ack sequence
     while (I2C1CONbits.ACKEN); // wait for ack
     return I2C1RCV;
 }
