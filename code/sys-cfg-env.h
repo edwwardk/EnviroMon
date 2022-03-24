@@ -254,7 +254,6 @@ void pmd_enable_used() {
 
 // module includes
 #include "adc-env.h"
-#include "sys-debug-env.h"
 #include "sys-rtcc-env.h"
 #include "sys-intcfg-env.h"
 
