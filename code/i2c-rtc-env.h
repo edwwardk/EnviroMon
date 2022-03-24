@@ -23,12 +23,12 @@
 #define OSCTRIM 0x09 // oscillator trim register
 
 // time registers
-#define SECOND 0x00
-#define MINUTE 0x01
-#define HOUR 0x02
-#define DAY 0x04
-#define MONTH 0x05
-#define YEAR 0x06
+#define SECONDS 0x00
+#define MINUTES 0x01
+#define HOURS 0x02
+#define DAYS 0x04
+#define MONTHS 0x05
+#define YEARS 0x06
 
 // global variables
 
@@ -68,22 +68,22 @@ uint8_t rtc_time(uint8_t time) {
     
     // format time output
     switch (time) {
-        case SECOND:
+        case SECONDS:
             data = data & 0x7F; // mask b7
             break;
-        case MINUTE:
+        case MINUTES:
             data = data & 0x7F; // mask b7
             break;
-        case HOUR:
+        case HOURS:
             data = data & 0x3F; // mask b7-b6
             break;
-        case DAY:
+        case DAYS:
             data = data & 0x3F; // mask b7-b6
             break;
-        case MONTH:
+        case MONTHS:
             data = data & 0x1F; // mask b7-b5
             break;
-        case YEAR:
+        case YEARS:
             data = data; // no mask
             break;
     }

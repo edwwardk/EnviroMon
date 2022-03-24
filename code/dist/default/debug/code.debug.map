@@ -4,11 +4,11 @@ Tool Name:
   c:\program files\microchip\xc16\v1.70\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000025ec.00 \
-  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000025ec.01 \
-  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000025ec.02 \
-  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000025ec.03 \
-  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000025ec.04 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000033dc.00 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000033dc.01 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000033dc.02 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000033dc.03 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000033dc.04 \
   -p24FJ64GB004 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC24F-GA-GB_DFP/1.4.141/xc16 \
   -o \
@@ -92,11 +92,11 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x3a2           0x573  (1395)
-.text                        0x5a2               0x4d8           0x744  (1860)
-.init.delay32                0xa7a                0x1c            0x2a  (42)
-.dinit                       0xa96                 0x8             0xc  (12)
+.text                        0x5a2               0x4fe           0x77d  (1917)
+.init.delay32                0xaa0                0x1c            0x2a  (42)
+.dinit                       0xabc                 0x8             0xc  (12)
 
-                 Total "program" memory used (bytes):          0xced  (3309) 5%
+                 Total "program" memory used (bytes):          0xd26  (3366) 5%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
@@ -108,9 +108,9 @@ reserve_data_0x820           0x820                 0x2             0x2  (2)
 reserve_data_0x822           0x822                 0x2             0x2  (2)
 reserve_data_0x824           0x824                 0x2             0x2  (2)
 reserve_data_0x826           0x826                0x2a            0x2a  (42)
-.nbss                        0x850                   0             0x2  (2)
+.nbss                        0x850                   0             0x8  (8)
 
-                 Total "data" memory used (bytes):           0x52  (82) 1%
+                 Total "data" memory used (bytes):           0x58  (88) 1%
 
 
 Dynamic Memory Usage
@@ -118,9 +118,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x852                              0x1fae  (8110)
+stack                        0x858                              0x1fa8  (8104)
 
-                 Maximum dynamic memory (bytes):         0x1fae  (8110)
+                 Maximum dynamic memory (bytes):         0x1fa8  (8104)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
@@ -128,10 +128,22 @@ Info: Project is using a large data memory model when small data memory model is
 External Symbols in Data Memory (by address):
 
                     0x0850                  _startComplete
+                    0x0851                  _seconds
+                    0x0852                  _minutes
+                    0x0853                  _hours
+                    0x0854                  _days
+                    0x0855                  _months
+                    0x0856                  _years
 
 External Symbols in Data Memory (by name):
 
+                    0x0854                  _days
+                    0x0853                  _hours
+                    0x0852                  _minutes
+                    0x0855                  _months
+                    0x0851                  _seconds
                     0x0850                  _startComplete
+                    0x0856                  _years
 
 External Symbols in Program Memory (by address):
 
@@ -184,7 +196,7 @@ External Symbols in Program Memory (by address):
                   0x000a20                  _lora_read
                   0x000a3c                  ___startup
                   0x000a66                  _main
-                  0x000a7a                  ___delay32
+                  0x000aa0                  ___delay32
 
 External Symbols in Program Memory (by name):
 
@@ -194,7 +206,7 @@ External Symbols in Program Memory (by name):
                   0x0002dc                  __RTCCInterrupt
                   0x0002e4                  __USB1Interrupt
                   0x0002f4                  ___addsf3
-                  0x000a7a                  ___delay32
+                  0x000aa0                  ___delay32
                   0x0003ae                  ___divsf3
                   0x00051a                  ___floatundisf
                   0x000432                  ___floatunsisf
@@ -380,18 +392,18 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x344b
+.debug_info       0x000000       0x3511
  *(.debug_info)
- .debug_info      0x000000       0x344b build/default/debug/main.o
+ .debug_info      0x000000       0x3511 build/default/debug/main.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x1c5
+.debug_abbrev     0x000000        0x1fe
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x1c5 build/default/debug/main.o
+ .debug_abbrev    0x000000        0x1fe build/default/debug/main.o
 
-.debug_line       0x000000        0x361
+.debug_line       0x000000        0x367
  *(.debug_line)
- .debug_line      0x000000        0x361 build/default/debug/main.o
+ .debug_line      0x000000        0x367 build/default/debug/main.o
 
 .debug_frame      0x000000        0x354
  *(.debug_frame)
@@ -408,10 +420,10 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x209
+                  0x000000        0x249
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000        0x209 build/default/debug/main.o
+                  0x000000        0x249 build/default/debug/main.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -1309,9 +1321,15 @@ __c30_signature
  __c30_signature
                   0x000511          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(funpack.eo)
 
-.nbss               0x0850          0x2
- .nbss              0x0850          0x2 build/default/debug/main.o
+.nbss               0x0850          0x8
+ .nbss              0x0850          0x8 build/default/debug/main.o
                     0x0850                  _startComplete
+                    0x0851                  _seconds
+                    0x0852                  _minutes
+                    0x0853                  _hours
+                    0x0854                  _days
+                    0x0855                  _months
+                    0x0856                  _years
 
 .config_JTAGEN    0x00abfe          0x2
  .config_JTAGEN
@@ -1348,8 +1366,8 @@ __c30_signature
  .ivt._USB1Interrupt
                   0x0000c0          0x2 build/default/debug/main.o
 
-.text             0x0005a2        0x4d8
- .text            0x0005a2        0x4d8 build/default/debug/main.o
+.text             0x0005a2        0x4fe
+ .text            0x0005a2        0x4fe build/default/debug/main.o
                   0x0005a2                  _sys_init
                   0x0005aa                  _pmd_disable_all
                   0x0005ee                  _pmd_enable_used
@@ -1379,9 +1397,9 @@ __c30_signature
                   0x000a3c                  ___startup
                   0x000a66                  _main
 
-.init.delay32     0x000a7a         0x1c
- .init.delay32    0x000a7a         0x1c c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                  0x000a7a                  ___delay32
+.init.delay32     0x000aa0         0x1c
+ .init.delay32    0x000aa0         0x1c c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x000aa0                  ___delay32
 
-.dinit            0x000a96          0x8
- .dinit           0x000a96          0x8 data_init
+.dinit            0x000abc          0x8
+ .dinit           0x000abc          0x8 data_init

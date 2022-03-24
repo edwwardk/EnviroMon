@@ -16,27 +16,28 @@
 
 
 // func decs
-
+uint8_t seconds, minutes, hours, days, months, years;
 
 // main program
 int main(void) {
     __startup(); // perform startup routine
                  // will only execute once on device reset
     
+    // setup debug led; RB3
     _TRISB3 = 0;
     _ODC3 = 0;
     
-
-    float vbat;
-    
+    // check current time
     while (1) {
-        vbat = battery_sample();
-        __delay_us(20);
+        seconds = rtc_time(SECONDS);
+        minutes = rtc_time(MINUTES);
+        hours = rtc_time(HOURS);
+        days = rtc_time(DAYS);
+        months = rtc_time(MONTHS);
+        years = rtc_time(YEARS);
+        __delay_us(100);
     }
     
-    
-    
-    _RB3 = 1; // turn LED on
-    while(1);
+    while(1); // trap program
     return 0;
 }
