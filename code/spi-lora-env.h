@@ -16,6 +16,30 @@
 #include "sys-cfg-env.h"
 
 // constant defs
+// Max number of octets the LORA Rx/Tx FIFO can hold
+#define LORA_FIFO_SIZE 255
+
+// This is the maximum number of bytes that can be carried by the LORA.
+// We use some for headers, keeping fewer for RadioHead messages
+#define LORA_MAX_PAYLOAD_LEN LORA_FIFO_SIZE
+
+// The length of the headers we add.
+// The headers are inside the LORA's payload
+#define LORA_HEADER_LEN 4
+
+// This is the maximum message length that can be supported by this driver. 
+// Can be pre-defined to a smaller size (to save SRAM) prior to including this header
+// Here we allow for 1 byte message length, 4 bytes headers, user data and 2 bytes of FCS
+#ifndef LORA_MAX_MESSAGE_LEN
+ #define LORA_MAX_MESSAGE_LEN (LORA_MAX_PAYLOAD_LEN - LORA_HEADER_LEN)
+#endif
+
+// The crystal oscillator frequency of the module
+#define LORA_FXOSC 32000000.0
+
+// The Frequency Synthesizer step = LORA_FXOSC / 2^^19
+#define LORA_FSTEP  (LORA_FXOSC / 524288)
+
 // register names in lora mode
 #define LORA_REG_00_FIFO                                0x00
 #define LORA_REG_01_OP_MODE                             0x01
@@ -213,12 +237,18 @@
 
 
 // global variables
-
+uint8_t _mode;
 
 // func decs
 void lora_init();
 void loraWrite(uint8_t);
 uint8_t loraRead(uint8_t, uint8_t);
+
+void lora_set_idle(void);
+void lora_set_tx(void);
+void lora_set_rx(void);
+
+void lora_send(uint8_t, uint8_t);
 
 // initialize lora module
 void lora_init() {
@@ -238,6 +268,41 @@ void lora_init() {
     RFEN = 1; // enable rf regulator
     RFRST = 1; // hold rf reset high
     RFCS = 1; // set rf chip select high
+    
+    // set sleep mode
+    lora_write(LORA_REG_01_OP_MODE, LORA_MODE_SLEEP | LORA_LONG_RANGE_MODE);
+    __delay_ms(10); // wait for sleep mode
+    
+    if (lora_read(LORA_REG_01_OP_MODE) != (LORA_MODE_SLEEP | LORA_LONG_RANGE_MODE)) {
+        
+    }
+    
+    // set up fifo
+    lora_write(LORA_REG_0E_FIFO_TX_BASE_ADDR, 0);
+    lora_write(LORA_REG_0F_FIFO_RX_BASE_ADDR, 0);
+    
+    lora_set_idle(); // set idle mode
+    
+    // set modem config
+    lora_write(0x1D, 0x72);
+    lora_write(0x1E, 0x74);
+    lora_write(0x26, 0x04);
+    
+    // set preamble length
+    lora_write(LORA_REG_20_PREAMBLE_MSB, 0);
+    lora_write(LORA_REG_21_PREAMBLE_LSB, 8);
+    
+    // set frequency
+    uint8_t _usingHFport;
+    uint32_t frf = (915.0 * 1000000.0) / LORA_FSTEP;
+    lora_write(LORA_REG_06_FRF_MSB, (frf >> 16) & 0xff);
+    lora_write(LORA_REG_07_FRF_MID, (frf >> 8) & 0xff);
+    lora_write(LORA_REG_08_FRF_LSB, frf & 0xff);
+    _usingHFport = (915.0 >= 779.0);
+    
+    // set power
+    lora_write(LORA_REG_4D_PA_DAC, LORA_PA_DAC_DISABLE);
+    lora_write(LORA_REG_09_PA_CONFIG, LORA_PA_SELECT | (13-5));
 }
 
 // write bytes to lora module
@@ -262,6 +327,26 @@ uint8_t lora_read(uint8_t address) {
     data = spi1_read(); // read byte
     RFCS = 1; // deselect chip
     return data;
+}
+
+// set rfm95 to idle mode
+void lora_set_idle(void) {
+    lora_write(LORA_REG_01_OP_MODE, LORA_MODE_STDBY);
+}
+
+// set rfm95 to tx mode
+void lora_set_tx(void) {
+    
+}
+
+// set rfm95 to rx mode
+void lora_set_rx(void) {
+    
+}
+
+// sends a message
+void lora_send(uint8_t data, uint8_t len) {
+    
 }
 #endif
 

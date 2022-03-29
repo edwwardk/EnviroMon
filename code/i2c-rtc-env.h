@@ -26,6 +26,7 @@
 #define SECONDS 0x00
 #define MINUTES 0x01
 #define HOURS 0x02
+#define WEEKDAYS 0x03
 #define DAYS 0x04
 #define MONTHS 0x05
 #define YEARS 0x06
@@ -38,6 +39,7 @@ void rtc_write_byte(uint8_t, uint8_t);
 uint8_t rtc_read_byte(uint8_t);
 
 uint8_t rtc_time(uint8_t);
+void rtc_set_time(void);
 
 // write byte to rtc sram
 void rtc_write_byte(uint8_t address, uint8_t data) {
@@ -89,6 +91,20 @@ uint8_t rtc_time(uint8_t time) {
     }
     
     return data;
+}
+
+// write time to rtc
+void rtc_set_time(void) {
+    rtc_write_byte(SECONDS, 0); // stop oscillator
+    
+    rtc_write_byte(MINUTES, 0x05); // write mintues
+    rtc_write_byte(HOURS, 0b00001001); // write hours
+    rtc_write_byte(WEEKDAYS, 0b00101010); // write weekdays
+    rtc_write_byte(DAYS, 0x28); // write days
+    rtc_write_byte(MONTHS, 0x03); // write months
+    rtc_write_byte(YEARS, 0x22); // write years
+    
+    rtc_write_byte(SECONDS, 0b10000000); // start time at 0 sec
 }
 #endif
 

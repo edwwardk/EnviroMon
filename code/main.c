@@ -16,7 +16,7 @@
 
 
 // func decs
-uint8_t seconds, minutes, hours, days, months, years;
+uint8_t seconds, minutes, hours, days, months, years, controlreg;
 
 // main program
 int main(void) {
@@ -27,6 +27,7 @@ int main(void) {
     _TRISB3 = 0;
     _ODC3 = 0;
     
+    
     // check current time
     while (1) {
         seconds = rtc_time(SECONDS);
@@ -35,6 +36,7 @@ int main(void) {
         days = rtc_time(DAYS);
         months = rtc_time(MONTHS);
         years = rtc_time(YEARS);
+        controlreg = rtc_read_byte(CONTROL);
         __delay_us(100);
     }
     

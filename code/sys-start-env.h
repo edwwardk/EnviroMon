@@ -41,7 +41,6 @@ void __startup() {
     // system inits
     sys_init(); // init misc sys cfg
     pmd_disable_all(); // disable all peripheral modules
-    //pmd_enable_used(); // enable used/unknown peripherals
     
     // module inits
     intInit(); // init external interrupts

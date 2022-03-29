@@ -4,11 +4,11 @@ Tool Name:
   c:\program files\microchip\xc16\v1.70\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000033dc.00 \
-  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000033dc.01 \
-  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000033dc.02 \
-  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000033dc.03 \
-  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp000033dc.04 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp00003848.00 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp00003848.01 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp00003848.02 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp00003848.03 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp00003848.04 \
   -p24FJ64GB004 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC24F-GA-GB_DFP/1.4.141/xc16 \
   -o \
@@ -92,11 +92,11 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x3a2           0x573  (1395)
-.text                        0x5a2               0x4fe           0x77d  (1917)
-.init.delay32                0xaa0                0x1c            0x2a  (42)
-.dinit                       0xabc                 0x8             0xc  (12)
+.text                        0x5a2               0x546           0x7e9  (2025)
+.init.delay32                0xae8                0x1c            0x2a  (42)
+.dinit                       0xb04                 0x8             0xc  (12)
 
-                 Total "program" memory used (bytes):          0xd26  (3366) 5%
+                 Total "program" memory used (bytes):          0xd92  (3474) 5%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
@@ -134,9 +134,11 @@ External Symbols in Data Memory (by address):
                     0x0854                  _days
                     0x0855                  _months
                     0x0856                  _years
+                    0x0857                  _controlreg
 
 External Symbols in Data Memory (by name):
 
+                    0x0857                  _controlreg
                     0x0854                  _days
                     0x0853                  _hours
                     0x0852                  _minutes
@@ -190,13 +192,17 @@ External Symbols in Program Memory (by address):
                   0x0008fe                  _rtc_write_byte
                   0x000918                  _rtc_read_byte
                   0x00093a                  _rtc_time
-                  0x00098a                  _battery_sample
-                  0x0009e6                  _lora_init
-                  0x000a02                  _lora_write
-                  0x000a20                  _lora_read
-                  0x000a3c                  ___startup
-                  0x000a66                  _main
-                  0x000aa0                  ___delay32
+                  0x00098a                  _rtc_set_time
+                  0x0009c0                  _battery_sample
+                  0x000a1c                  _lora_init
+                  0x000a38                  _lora_write
+                  0x000a56                  _lora_read
+                  0x000a72                  _lora_set_idle
+                  0x000a78                  _lora_set_tx
+                  0x000a7e                  _lora_set_rx
+                  0x000a84                  ___startup
+                  0x000aae                  _main
+                  0x000ae8                  ___delay32
 
 External Symbols in Program Memory (by name):
 
@@ -206,12 +212,12 @@ External Symbols in Program Memory (by name):
                   0x0002dc                  __RTCCInterrupt
                   0x0002e4                  __USB1Interrupt
                   0x0002f4                  ___addsf3
-                  0x000aa0                  ___delay32
+                  0x000ae8                  ___delay32
                   0x0003ae                  ___divsf3
                   0x00051a                  ___floatundisf
                   0x000432                  ___floatunsisf
                   0x0004b2                  ___mulsf3
-                  0x000a3c                  ___startup
+                  0x000a84                  ___startup
                   0x0002f2                  ___subsf3
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
@@ -225,7 +231,7 @@ External Symbols in Program Memory (by name):
                   0x000200                  __resetPRI
                   0x0007d8                  _adcInit
                   0x000838                  _adcMeasure
-                  0x00098a                  _battery_sample
+                  0x0009c0                  _battery_sample
                   0x000632                  _i2c_init
                   0x0006be                  _i2c_restart
                   0x000664                  _i2c_rx_byte
@@ -233,13 +239,17 @@ External Symbols in Program Memory (by name):
                   0x0006ac                  _i2c_stop
                   0x000642                  _i2c_tx_byte
                   0x000876                  _intInit
-                  0x0009e6                  _lora_init
-                  0x000a20                  _lora_read
-                  0x000a02                  _lora_write
-                  0x000a66                  _main
+                  0x000a1c                  _lora_init
+                  0x000a56                  _lora_read
+                  0x000a72                  _lora_set_idle
+                  0x000a7e                  _lora_set_rx
+                  0x000a78                  _lora_set_tx
+                  0x000a38                  _lora_write
+                  0x000aae                  _main
                   0x0005aa                  _pmd_disable_all
                   0x0005ee                  _pmd_enable_used
                   0x000918                  _rtc_read_byte
+                  0x00098a                  _rtc_set_time
                   0x00093a                  _rtc_time
                   0x0008fe                  _rtc_write_byte
                   0x000870                  _rtccInit
@@ -392,26 +402,26 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x3511
+.debug_info       0x000000       0x35a7
  *(.debug_info)
- .debug_info      0x000000       0x3511 build/default/debug/main.o
+ .debug_info      0x000000       0x35a7 build/default/debug/main.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x1fe
+.debug_abbrev     0x000000        0x252
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x1fe build/default/debug/main.o
+ .debug_abbrev    0x000000        0x252 build/default/debug/main.o
 
-.debug_line       0x000000        0x367
+.debug_line       0x000000        0x37c
  *(.debug_line)
- .debug_line      0x000000        0x367 build/default/debug/main.o
+ .debug_line      0x000000        0x37c build/default/debug/main.o
 
-.debug_frame      0x000000        0x354
+.debug_frame      0x000000        0x3bc
  *(.debug_frame)
- .debug_frame     0x000000        0x354 build/default/debug/main.o
+ .debug_frame     0x000000        0x3bc build/default/debug/main.o
 
-.debug_str        0x000000        0x1aa
+.debug_str        0x000000        0x1b5
  *(.debug_str)
- .debug_str       0x000000        0x1aa build/default/debug/main.o
+ .debug_str       0x000000        0x1b5 build/default/debug/main.o
 
 .debug_loc
  *(.debug_loc)
@@ -420,10 +430,10 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x249
+                  0x000000        0x29b
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000        0x249 build/default/debug/main.o
+                  0x000000        0x29b build/default/debug/main.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -1330,6 +1340,7 @@ __c30_signature
                     0x0854                  _days
                     0x0855                  _months
                     0x0856                  _years
+                    0x0857                  _controlreg
 
 .config_JTAGEN    0x00abfe          0x2
  .config_JTAGEN
@@ -1366,8 +1377,8 @@ __c30_signature
  .ivt._USB1Interrupt
                   0x0000c0          0x2 build/default/debug/main.o
 
-.text             0x0005a2        0x4fe
- .text            0x0005a2        0x4fe build/default/debug/main.o
+.text             0x0005a2        0x546
+ .text            0x0005a2        0x546 build/default/debug/main.o
                   0x0005a2                  _sys_init
                   0x0005aa                  _pmd_disable_all
                   0x0005ee                  _pmd_enable_used
@@ -1390,16 +1401,20 @@ __c30_signature
                   0x0008fe                  _rtc_write_byte
                   0x000918                  _rtc_read_byte
                   0x00093a                  _rtc_time
-                  0x00098a                  _battery_sample
-                  0x0009e6                  _lora_init
-                  0x000a02                  _lora_write
-                  0x000a20                  _lora_read
-                  0x000a3c                  ___startup
-                  0x000a66                  _main
+                  0x00098a                  _rtc_set_time
+                  0x0009c0                  _battery_sample
+                  0x000a1c                  _lora_init
+                  0x000a38                  _lora_write
+                  0x000a56                  _lora_read
+                  0x000a72                  _lora_set_idle
+                  0x000a78                  _lora_set_tx
+                  0x000a7e                  _lora_set_rx
+                  0x000a84                  ___startup
+                  0x000aae                  _main
 
-.init.delay32     0x000aa0         0x1c
- .init.delay32    0x000aa0         0x1c c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                  0x000aa0                  ___delay32
+.init.delay32     0x000ae8         0x1c
+ .init.delay32    0x000ae8         0x1c c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x000ae8                  ___delay32
 
-.dinit            0x000abc          0x8
- .dinit           0x000abc          0x8 data_init
+.dinit            0x000b04          0x8
+ .dinit           0x000b04          0x8 data_init
