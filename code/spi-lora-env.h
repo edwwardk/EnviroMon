@@ -236,19 +236,36 @@
 #define LORA_PA_DAC_ENABLE                         0x07
 
 
+#define LORA_TX_PWR 13
+#define LORA_FREQUENCY 915.0
+
 // global variables
 uint8_t _mode;
 
+enum {
+    _txHeaderTo = 1,
+    _txHeaderFrom,
+    _txHeaderId,
+    _txHeaderFlags
+};
+
+enum {
+    LoraModeIdle,
+    LoraModeSleep,
+    LoraModeTX
+};
+
 // func decs
 void lora_init();
-void loraWrite(uint8_t);
-uint8_t loraRead(uint8_t, uint8_t);
+void lora_write(uint8_t, uint8_t);
+void lora_burst_write(uint8_t, uint8_t[]);
+uint8_t lora_read(uint8_t);
 
 void lora_set_idle(void);
+void lora_set_sleep(void);
 void lora_set_tx(void);
-void lora_set_rx(void);
 
-void lora_send(uint8_t, uint8_t);
+void lora_send(uint8_t[]);
 
 // initialize lora module
 void lora_init() {
@@ -269,12 +286,15 @@ void lora_init() {
     RFRST = 1; // hold rf reset high
     RFCS = 1; // set rf chip select high
     
+    __delay_ms(100); // setup time
+    
     // set sleep mode
     lora_write(LORA_REG_01_OP_MODE, LORA_MODE_SLEEP | LORA_LONG_RANGE_MODE);
     __delay_ms(10); // wait for sleep mode
     
+    // check if in sleep mode
     if (lora_read(LORA_REG_01_OP_MODE) != (LORA_MODE_SLEEP | LORA_LONG_RANGE_MODE)) {
-        
+     while (1); // trap if fail
     }
     
     // set up fifo
@@ -294,15 +314,15 @@ void lora_init() {
     
     // set frequency
     uint8_t _usingHFport;
-    uint32_t frf = (915.0 * 1000000.0) / LORA_FSTEP;
+    uint32_t frf = (LORA_FREQUENCY * 1000000.0) / LORA_FSTEP;
     lora_write(LORA_REG_06_FRF_MSB, (frf >> 16) & 0xff);
     lora_write(LORA_REG_07_FRF_MID, (frf >> 8) & 0xff);
     lora_write(LORA_REG_08_FRF_LSB, frf & 0xff);
-    _usingHFport = (915.0 >= 779.0);
+    _usingHFport = (LORA_FREQUENCY >= 779.0);
     
     // set power
     lora_write(LORA_REG_4D_PA_DAC, LORA_PA_DAC_DISABLE);
-    lora_write(LORA_REG_09_PA_CONFIG, LORA_PA_SELECT | (13-5));
+    lora_write(LORA_REG_09_PA_CONFIG, LORA_PA_SELECT | (LORA_TX_PWR - 5));
 }
 
 // write bytes to lora module
@@ -313,6 +333,20 @@ void lora_write(uint8_t address, uint8_t data) {
     __delay_us(1);
     spi1_write(address); // send address
     spi1_write(data); // send byte
+    RFCS = 1; // deselect chip
+}
+
+// write multiple bytes
+void lora_burst_write(uint8_t address, uint8_t data[]) {
+    int i; // index variable
+    address = address | 0x80; // set msb to 1 for write
+    
+    RFCS = 0; // select chip
+    __delay_us(1);
+    spi1_write(address); // send address
+    for (i = 0; i < sizeof(data); i++) {
+        spi1_write(data[i]); // send each byte of data
+    }
     RFCS = 1; // deselect chip
 }
 
@@ -331,22 +365,47 @@ uint8_t lora_read(uint8_t address) {
 
 // set rfm95 to idle mode
 void lora_set_idle(void) {
-    lora_write(LORA_REG_01_OP_MODE, LORA_MODE_STDBY);
+    if (_mode != LoraModeIdle) {
+        lora_write(LORA_REG_01_OP_MODE, LORA_MODE_STDBY);
+        _mode = LoraModeIdle;
+    }
+}
+
+// set rfm95 to sleep mode
+void lora_set_sleep(void) {
+    if (_mode != LoraModeSleep) {
+        lora_write(LORA_REG_01_OP_MODE, LORA_MODE_SLEEP);
+        _mode = LoraModeSleep;
+    }
 }
 
 // set rfm95 to tx mode
 void lora_set_tx(void) {
-    
-}
-
-// set rfm95 to rx mode
-void lora_set_rx(void) {
-    
+    if (_mode != LoraModeTX) {
+        lora_write(LORA_REG_01_OP_MODE, LORA_MODE_TX);
+        _mode = LoraModeTX;
+    }
 }
 
 // sends a message
-void lora_send(uint8_t data, uint8_t len) {
+void lora_send(uint8_t data[]) {
+    lora_set_idle(); // set idle mode
     
+    // set address to start of fifo buffer
+    lora_write(LORA_REG_0D_FIFO_ADDR_PTR, 0);
+    
+    // write headers
+    lora_write(LORA_REG_00_FIFO, _txHeaderTo);
+    lora_write(LORA_REG_00_FIFO, _txHeaderFrom);
+    lora_write(LORA_REG_00_FIFO, _txHeaderId);
+    lora_write(LORA_REG_00_FIFO, _txHeaderFlags);
+    
+    // write data and payload length
+    lora_burst_write(LORA_REG_00_FIFO, data);
+    lora_write(LORA_REG_22_PAYLOAD_LENGTH, sizeof(data) + LORA_HEADER_LEN);
+    
+    lora_set_tx(); // start tx
+    __delay_ms(10); // wait for tx
 }
 #endif
 
