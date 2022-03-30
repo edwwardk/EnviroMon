@@ -258,14 +258,14 @@ enum {
 // func decs
 void lora_init();
 void lora_write(uint8_t, uint8_t);
-void lora_burst_write(uint8_t, uint8_t[]);
+void lora_burst_write(uint8_t, uint8_t[], uint8_t);
 uint8_t lora_read(uint8_t);
 
 void lora_set_idle(void);
 void lora_set_sleep(void);
 void lora_set_tx(void);
 
-void lora_send(uint8_t[]);
+void lora_send(uint8_t[], uint8_t);
 
 // initialize lora module
 void lora_init() {
@@ -337,14 +337,14 @@ void lora_write(uint8_t address, uint8_t data) {
 }
 
 // write multiple bytes
-void lora_burst_write(uint8_t address, uint8_t data[]) {
+void lora_burst_write(uint8_t address, uint8_t *data, uint8_t length) {
     int i; // index variable
     address = address | 0x80; // set msb to 1 for write
     
     RFCS = 0; // select chip
     __delay_us(1);
     spi1_write(address); // send address
-    for (i = 0; i < sizeof(data); i++) {
+    for (i = 0; i < length; i++) {
         spi1_write(data[i]); // send each byte of data
     }
     RFCS = 1; // deselect chip
@@ -388,7 +388,7 @@ void lora_set_tx(void) {
 }
 
 // sends a message
-void lora_send(uint8_t data[]) {
+void lora_send(uint8_t data[], uint8_t length) {
     lora_set_idle(); // set idle mode
     
     // set address to start of fifo buffer
@@ -401,11 +401,11 @@ void lora_send(uint8_t data[]) {
     lora_write(LORA_REG_00_FIFO, _txHeaderFlags);
     
     // write data and payload length
-    lora_burst_write(LORA_REG_00_FIFO, data);
-    lora_write(LORA_REG_22_PAYLOAD_LENGTH, sizeof(data) + LORA_HEADER_LEN);
+    lora_burst_write(LORA_REG_00_FIFO, data, length);
+    lora_write(LORA_REG_22_PAYLOAD_LENGTH, length + LORA_HEADER_LEN);
     
     lora_set_tx(); // start tx
-    __delay_ms(10); // wait for tx
+    __delay_ms(100); // wait for tx
 }
 #endif
 

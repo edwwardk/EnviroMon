@@ -28,12 +28,14 @@ int main(void) {
     _ODC3 = 0;
     
     
-    uint8_t payload[20] = "hello world!"; 
+    uint8_t hello[20] = "hello world!";
+    uint8_t name[20] = "what is your name?";
     
     
     // check current time
     while (1) {
-        lora_send(payload);
+        lora_send(hello, sizeof(hello));
+        lora_send(name, sizeof(name));
         
         
         /*
