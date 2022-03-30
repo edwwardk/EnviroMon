@@ -4,11 +4,11 @@ Tool Name:
   c:\program files (x86)\microchip\xc16\v1.35\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00000a70.00 \
-  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00000a70.01 \
-  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00000a70.02 \
-  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00000a70.03 \
-  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00000a70.04 \
+  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00001064.00 \
+  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00001064.01 \
+  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00001064.02 \
+  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00001064.03 \
+  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00001064.04 \
   -p24FJ64GB004 \
   -o \
   dist/default/debug/code.debug.elf \
@@ -86,12 +86,12 @@ xc16-ld 1.35 (A)
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x3a2           0x573  (1395)
-.const                       0x5a2                0x28            0x3c  (60)
-.text                        0x5ca               0x67c           0x9ba  (2490)
-.init.delay32                0xc46                0x1c            0x2a  (42)
-.dinit                       0xc62                 0x8             0xc  (12)
+.const                       0x5a2                0x1a            0x27  (39)
+.text                        0x5bc               0x684           0x9c6  (2502)
+.init.delay32                0xc40                0x1c            0x2a  (42)
+.dinit                       0xc5c                 0x8             0xc  (12)
 
-                 Total "program" memory used (bytes):          0xf9f  (3999) 6%
+                 Total "program" memory used (bytes):          0xf96  (3990) 6%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
@@ -165,41 +165,41 @@ External Symbols in Program Memory (by address):
                   0x0004b2                  ___mulsf3
                   0x00051a                  ___floatundisf
                   0x000578                  __funpack
-                  0x0005ca                  _sys_init
-                  0x0005d2                  _pmd_disable_all
-                  0x000616                  _pmd_enable_used
-                  0x00065a                  _i2c_init
-                  0x00066a                  _i2c_tx_byte
-                  0x00068c                  _i2c_rx_byte
-                  0x0006c4                  _i2c_start
-                  0x0006d6                  _i2c_stop
-                  0x0006e8                  _i2c_restart
-                  0x0006fa                  _spi1Init
-                  0x000770                  _spi2Init
-                  0x0007d0                  _spi1_write
-                  0x0007ea                  _spi1_read
-                  0x000802                  _adcInit
-                  0x000862                  _adcMeasure
-                  0x00089a                  _rtccInit
-                  0x0008a0                  _intInit
-                  0x0008ec                  _sht30RH
-                  0x00090a                  _sht30Temp
-                  0x000928                  _rtc_write_byte
-                  0x000942                  _rtc_read_byte
-                  0x000964                  _rtc_time
-                  0x0009b4                  _rtc_set_time
-                  0x0009ea                  _battery_sample
-                  0x000a46                  _lora_init
-                  0x000aea                  _lora_write
-                  0x000b08                  _lora_burst_write
-                  0x000b42                  _lora_read
-                  0x000b5e                  _lora_set_idle
-                  0x000b72                  _lora_set_sleep
-                  0x000b88                  _lora_set_tx
-                  0x000b9e                  _lora_send
-                  0x000be2                  ___startup
-                  0x000c0c                  _main
-                  0x000c46                  ___delay32
+                  0x0005bc                  _sys_init
+                  0x0005c4                  _pmd_disable_all
+                  0x000608                  _pmd_enable_used
+                  0x00064c                  _i2c_init
+                  0x00065c                  _i2c_tx_byte
+                  0x00067e                  _i2c_rx_byte
+                  0x0006b6                  _i2c_start
+                  0x0006c8                  _i2c_stop
+                  0x0006da                  _i2c_restart
+                  0x0006ec                  _spi1Init
+                  0x000762                  _spi2Init
+                  0x0007c2                  _spi1_write
+                  0x0007dc                  _spi1_read
+                  0x0007f4                  _adcInit
+                  0x000854                  _adcMeasure
+                  0x00088c                  _rtccInit
+                  0x000892                  _intInit
+                  0x0008de                  _sht30RH
+                  0x0008fc                  _sht30Temp
+                  0x00091a                  _rtc_write_byte
+                  0x000934                  _rtc_read_byte
+                  0x000956                  _rtc_time
+                  0x0009a6                  _rtc_set_time
+                  0x0009dc                  _battery_sample
+                  0x000a38                  _lora_init
+                  0x000adc                  _lora_write
+                  0x000afa                  _lora_burst_write
+                  0x000b34                  _lora_read
+                  0x000b50                  _lora_set_idle
+                  0x000b64                  _lora_set_sleep
+                  0x000b7a                  _lora_set_tx
+                  0x000b90                  _lora_send
+                  0x000bd4                  ___startup
+                  0x000bfe                  _main
+                  0x000c40                  ___delay32
 
 External Symbols in Program Memory (by name):
 
@@ -209,12 +209,12 @@ External Symbols in Program Memory (by name):
                   0x0002dc                  __RTCCInterrupt
                   0x0002e4                  __USB1Interrupt
                   0x0002f4                  ___addsf3
-                  0x000c46                  ___delay32
+                  0x000c40                  ___delay32
                   0x0003ae                  ___divsf3
                   0x00051a                  ___floatundisf
                   0x000432                  ___floatunsisf
                   0x0004b2                  ___mulsf3
-                  0x000be2                  ___startup
+                  0x000bd4                  ___startup
                   0x0002f2                  ___subsf3
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
@@ -226,39 +226,39 @@ External Symbols in Program Memory (by name):
                   0x000482                  __funpack2
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000802                  _adcInit
-                  0x000862                  _adcMeasure
-                  0x0009ea                  _battery_sample
-                  0x00065a                  _i2c_init
-                  0x0006e8                  _i2c_restart
-                  0x00068c                  _i2c_rx_byte
-                  0x0006c4                  _i2c_start
-                  0x0006d6                  _i2c_stop
-                  0x00066a                  _i2c_tx_byte
-                  0x0008a0                  _intInit
-                  0x000b08                  _lora_burst_write
-                  0x000a46                  _lora_init
-                  0x000b42                  _lora_read
-                  0x000b9e                  _lora_send
-                  0x000b5e                  _lora_set_idle
-                  0x000b72                  _lora_set_sleep
-                  0x000b88                  _lora_set_tx
-                  0x000aea                  _lora_write
-                  0x000c0c                  _main
-                  0x0005d2                  _pmd_disable_all
-                  0x000616                  _pmd_enable_used
-                  0x000942                  _rtc_read_byte
-                  0x0009b4                  _rtc_set_time
-                  0x000964                  _rtc_time
-                  0x000928                  _rtc_write_byte
-                  0x00089a                  _rtccInit
-                  0x0008ec                  _sht30RH
-                  0x00090a                  _sht30Temp
-                  0x0006fa                  _spi1Init
-                  0x0007ea                  _spi1_read
-                  0x0007d0                  _spi1_write
-                  0x000770                  _spi2Init
-                  0x0005ca                  _sys_init
+                  0x0007f4                  _adcInit
+                  0x000854                  _adcMeasure
+                  0x0009dc                  _battery_sample
+                  0x00064c                  _i2c_init
+                  0x0006da                  _i2c_restart
+                  0x00067e                  _i2c_rx_byte
+                  0x0006b6                  _i2c_start
+                  0x0006c8                  _i2c_stop
+                  0x00065c                  _i2c_tx_byte
+                  0x000892                  _intInit
+                  0x000afa                  _lora_burst_write
+                  0x000a38                  _lora_init
+                  0x000b34                  _lora_read
+                  0x000b90                  _lora_send
+                  0x000b50                  _lora_set_idle
+                  0x000b64                  _lora_set_sleep
+                  0x000b7a                  _lora_set_tx
+                  0x000adc                  _lora_write
+                  0x000bfe                  _main
+                  0x0005c4                  _pmd_disable_all
+                  0x000608                  _pmd_enable_used
+                  0x000934                  _rtc_read_byte
+                  0x0009a6                  _rtc_set_time
+                  0x000956                  _rtc_time
+                  0x00091a                  _rtc_write_byte
+                  0x00088c                  _rtccInit
+                  0x0008de                  _sht30RH
+                  0x0008fc                  _sht30Temp
+                  0x0006ec                  _spi1Init
+                  0x0007dc                  _spi1_read
+                  0x0007c2                  _spi1_write
+                  0x000762                  _spi2Init
+                  0x0005bc                  _sys_init
 
 Memory Configuration
 
@@ -401,18 +401,18 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x36bc
+.debug_info       0x000000       0x36fa
  *(.debug_info)
- .debug_info      0x000000       0x36bc build/default/debug/main.o
+ .debug_info      0x000000       0x36fa build/default/debug/main.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x29f
  *(.debug_abbrev)
  .debug_abbrev    0x000000        0x29f build/default/debug/main.o
 
-.debug_line       0x000000        0x391
+.debug_line       0x000000        0x396
  *(.debug_line)
- .debug_line      0x000000        0x391 build/default/debug/main.o
+ .debug_line      0x000000        0x396 build/default/debug/main.o
 
 .debug_frame      0x000000        0x43c
  *(.debug_frame)
@@ -1377,49 +1377,49 @@ __c30_signature
  .ivt._USB1Interrupt
                   0x0000c0          0x2 build/default/debug/main.o
 
-.const              0x85a2         0x28 load address 0x0005a2  
- .const             0x85a2         0x28 build/default/debug/main.o
+.const              0x85a2         0x1a load address 0x0005a2  
+ .const             0x85a2         0x1a build/default/debug/main.o
 
-.text             0x0005ca        0x67c
- .text            0x0005ca        0x67c build/default/debug/main.o
-                  0x0005ca                  _sys_init
-                  0x0005d2                  _pmd_disable_all
-                  0x000616                  _pmd_enable_used
-                  0x00065a                  _i2c_init
-                  0x00066a                  _i2c_tx_byte
-                  0x00068c                  _i2c_rx_byte
-                  0x0006c4                  _i2c_start
-                  0x0006d6                  _i2c_stop
-                  0x0006e8                  _i2c_restart
-                  0x0006fa                  _spi1Init
-                  0x000770                  _spi2Init
-                  0x0007d0                  _spi1_write
-                  0x0007ea                  _spi1_read
-                  0x000802                  _adcInit
-                  0x000862                  _adcMeasure
-                  0x00089a                  _rtccInit
-                  0x0008a0                  _intInit
-                  0x0008ec                  _sht30RH
-                  0x00090a                  _sht30Temp
-                  0x000928                  _rtc_write_byte
-                  0x000942                  _rtc_read_byte
-                  0x000964                  _rtc_time
-                  0x0009b4                  _rtc_set_time
-                  0x0009ea                  _battery_sample
-                  0x000a46                  _lora_init
-                  0x000aea                  _lora_write
-                  0x000b08                  _lora_burst_write
-                  0x000b42                  _lora_read
-                  0x000b5e                  _lora_set_idle
-                  0x000b72                  _lora_set_sleep
-                  0x000b88                  _lora_set_tx
-                  0x000b9e                  _lora_send
-                  0x000be2                  ___startup
-                  0x000c0c                  _main
+.text             0x0005bc        0x684
+ .text            0x0005bc        0x684 build/default/debug/main.o
+                  0x0005bc                  _sys_init
+                  0x0005c4                  _pmd_disable_all
+                  0x000608                  _pmd_enable_used
+                  0x00064c                  _i2c_init
+                  0x00065c                  _i2c_tx_byte
+                  0x00067e                  _i2c_rx_byte
+                  0x0006b6                  _i2c_start
+                  0x0006c8                  _i2c_stop
+                  0x0006da                  _i2c_restart
+                  0x0006ec                  _spi1Init
+                  0x000762                  _spi2Init
+                  0x0007c2                  _spi1_write
+                  0x0007dc                  _spi1_read
+                  0x0007f4                  _adcInit
+                  0x000854                  _adcMeasure
+                  0x00088c                  _rtccInit
+                  0x000892                  _intInit
+                  0x0008de                  _sht30RH
+                  0x0008fc                  _sht30Temp
+                  0x00091a                  _rtc_write_byte
+                  0x000934                  _rtc_read_byte
+                  0x000956                  _rtc_time
+                  0x0009a6                  _rtc_set_time
+                  0x0009dc                  _battery_sample
+                  0x000a38                  _lora_init
+                  0x000adc                  _lora_write
+                  0x000afa                  _lora_burst_write
+                  0x000b34                  _lora_read
+                  0x000b50                  _lora_set_idle
+                  0x000b64                  _lora_set_sleep
+                  0x000b7a                  _lora_set_tx
+                  0x000b90                  _lora_send
+                  0x000bd4                  ___startup
+                  0x000bfe                  _main
 
-.init.delay32     0x000c46         0x1c
- .init.delay32    0x000c46         0x1c c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                  0x000c46                  ___delay32
+.init.delay32     0x000c40         0x1c
+ .init.delay32    0x000c40         0x1c c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x000c40                  ___delay32
 
-.dinit            0x000c62          0x8
- .dinit           0x000c62          0x8 data_init
+.dinit            0x000c5c          0x8
+ .dinit           0x000c5c          0x8 data_init

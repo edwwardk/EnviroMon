@@ -27,15 +27,38 @@ int main(void) {
     _TRISB3 = 0;
     _ODC3 = 0;
     
+    uint8_t message[] = "test message";
     
-    uint8_t hello[20] = "hello world!";
-    uint8_t name[20] = "what is your name?";
+    uint8_t temperature[12] = {
+        0,
+        1,
+        2,
+        3,
+        1,
+        22,
+        03,
+        29,
+        10,
+        25,
+        30,
+        25
+    };
+    
+    uint8_t humidity[12] = {
+        
+    };
+    
+    uint8_t battery[12] = {
+        
+    };
+    
     
     
     // check current time
     while (1) {
-        lora_send(hello, sizeof(hello));
-        lora_send(name, sizeof(name));
+        lora_send(temperature, sizeof(temperature));
+        __delay_ms(500);
+        lora_send(message, sizeof(message));
         
         
         /*
