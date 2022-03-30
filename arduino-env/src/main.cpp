@@ -28,8 +28,10 @@ char print_buf[32] = "\0";
 
 
 // mqtt and ethernet
-byte mac[] = {0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x02};
-IPAddress iotIP (192, 168, 0, 105);
+//byte mac[] = {0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x02}; // home mac
+byte mac[] = {0x90, 0xA2, 0xDA, 0x10, 0x02, 0x0B}; // school mac
+//IPAddress iotIP (192, 168, 0, 105); // home ip address
+//IPAddress iotIP (10, 1, 74, 5); // school ip?
 
 #define AIO_SERVER "io.adafruit.com"
 #define AIO_SERVERPORT 1883
@@ -83,9 +85,14 @@ void setup() {
   // set to receive all frames
   rf95.setPromiscuous(true);
 
+  Serial.println("aaaaaaaaaaaaaa");
+
   // init ethernet
   Ethernet.begin(mac);
   delay(1000);
+
+  // print ip address
+  Serial.println(Ethernet.localIP());
 }
 
 // main program loop
@@ -111,7 +118,7 @@ void loop() {
     
   }
   // uncomment if spamming
-  //delay(2000);
+  delay(1500);
 }
 
 // connect and reconnect to mqtt server as necessary

@@ -1,26 +1,28 @@
-Microchip Technology Inc, v1.35 (A)
+Microchip Technology Inc, v1.70 (B)
 
 Tool Name:
-  c:\program files (x86)\microchip\xc16\v1.35\bin\bin\..\bin/elf-ld.exe
+  c:\program files\microchip\xc16\v1.70\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00001064.00 \
-  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00001064.01 \
-  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00001064.02 \
-  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00001064.03 \
-  -TC:\\Users\\eddyk\\AppData\\Local\\Temp\\tmp00001064.04 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp00002f24.00 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp00002f24.01 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp00002f24.02 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp00002f24.03 \
+  -TC:\\Users\\300302~1\\AppData\\Local\\Temp\\tmp00002f24.04 \
   -p24FJ64GB004 \
+  --mdfp=C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC24F-GA-GB_DFP/1.4.141/xc16 \
   -o \
   dist/default/debug/code.debug.elf \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/.. \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/PIC24E/gld \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/PIC24F/gld \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/PIC24H/gld \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC30F/gld \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33C/gld \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33E/gld \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33F/gld \
+  -Lc:/program files/microchip/xc16/v1.70/bin/bin/.. \
+  -LC:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC24F-GA-GB_DFP/1.4.141/xc16/bin/../support/PIC24F/gld \
+  -Lc:/program files/microchip/xc16/v1.70/bin/bin/../../lib \
+  -Lc:/program files/microchip/xc16/v1.70/bin/bin/../../support/PIC24E/gld \
+  -Lc:/program files/microchip/xc16/v1.70/bin/bin/../../support/PIC24F/gld \
+  -Lc:/program files/microchip/xc16/v1.70/bin/bin/../../support/PIC24H/gld \
+  -Lc:/program files/microchip/xc16/v1.70/bin/bin/../../support/dsPIC30F/gld \
+  -Lc:/program files/microchip/xc16/v1.70/bin/bin/../../support/dsPIC33C/gld \
+  -Lc:/program files/microchip/xc16/v1.70/bin/bin/../../support/dsPIC33E/gld \
+  -Lc:/program files/microchip/xc16/v1.70/bin/bin/../../support/dsPIC33F/gld \
   build/default/debug/main.o \
   --defsym=__MPLAB_BUILD=1 \
   --defsym=__MPLAB_DEBUG=1 \
@@ -51,35 +53,39 @@ Command:
 Optional library libpPIC24Fxxx.a not found
 Archive member included because of file (symbol)
 
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
                               (__resetPRI)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
-                              c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o) (__data_init_standard)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                              c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o) (__data_init_standard)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
                               (__crt_start_mode_normal)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
                               build/default/debug/main.o (___delay32)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(addsf3.eo)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(addsf3.eo)
                               build/default/debug/main.o (___subsf3)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(divsf3.eo)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(divsf3.eo)
                               build/default/debug/main.o (___divsf3)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
                               build/default/debug/main.o (___floatunsisf)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(fpack.eo)
-                              c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(addsf3.eo) (__fpack)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(funpack2.eo)
-                              c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(addsf3.eo) (__funpack2)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(futil.eo)
-                              c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(addsf3.eo) (__fPropagateNaN)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(fpack.eo)
+                              c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(addsf3.eo) (__fpack)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(funpack2.eo)
+                              c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(addsf3.eo) (__funpack2)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(futil.eo)
+                              c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(addsf3.eo) (__fPropagateNaN)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
                               build/default/debug/main.o (___mulsf3)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
-                              c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(floatunsisf.eo) (___floatundisf)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(funpack.eo)
-                              c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(funpack2.eo) (__funpack)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
+                              c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(floatunsisf.eo) (___floatundisf)
+c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(funpack.eo)
+                              c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(funpack2.eo) (__funpack)
 
 
-xc16-ld 1.35 (A)
+xc16-ld 1.70 (B)
+
+Default Code Model: Small
+Default Data Model: Large
+Default Scalar Model: Small
 
 "program" Memory  [Origin = 0x200, Length = 0xa9f8]
 
@@ -87,11 +93,11 @@ section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x3a2           0x573  (1395)
 .const                       0x5a2                0x1a            0x27  (39)
-.text                        0x5bc               0x684           0x9c6  (2502)
-.init.delay32                0xc40                0x1c            0x2a  (42)
-.dinit                       0xc5c                 0x8             0xc  (12)
+.text                        0x5bc               0x68e           0x9d5  (2517)
+.init.delay32                0xc4a                0x1c            0x2a  (42)
+.dinit                       0xc66                 0x8             0xc  (12)
 
-                 Total "program" memory used (bytes):          0xf96  (3990) 6%
+                 Total "program" memory used (bytes):          0xfa5  (4005) 6%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
@@ -116,6 +122,8 @@ heap                             0                                   0  (0)
 stack                        0x85a                              0x1fa6  (8102)
 
                  Maximum dynamic memory (bytes):         0x1fa6  (8102)
+
+Info: Project is using a large data memory model when small data memory model is sufficient.
 
 
 External Symbols in Data Memory (by address):
@@ -171,35 +179,35 @@ External Symbols in Program Memory (by address):
                   0x00064c                  _i2c_init
                   0x00065c                  _i2c_tx_byte
                   0x00067e                  _i2c_rx_byte
-                  0x0006b6                  _i2c_start
-                  0x0006c8                  _i2c_stop
-                  0x0006da                  _i2c_restart
-                  0x0006ec                  _spi1Init
-                  0x000762                  _spi2Init
-                  0x0007c2                  _spi1_write
-                  0x0007dc                  _spi1_read
-                  0x0007f4                  _adcInit
-                  0x000854                  _adcMeasure
-                  0x00088c                  _rtccInit
-                  0x000892                  _intInit
-                  0x0008de                  _sht30RH
-                  0x0008fc                  _sht30Temp
-                  0x00091a                  _rtc_write_byte
-                  0x000934                  _rtc_read_byte
-                  0x000956                  _rtc_time
-                  0x0009a6                  _rtc_set_time
-                  0x0009dc                  _battery_sample
-                  0x000a38                  _lora_init
-                  0x000adc                  _lora_write
-                  0x000afa                  _lora_burst_write
-                  0x000b34                  _lora_read
-                  0x000b50                  _lora_set_idle
-                  0x000b64                  _lora_set_sleep
-                  0x000b7a                  _lora_set_tx
-                  0x000b90                  _lora_send
-                  0x000bd4                  ___startup
-                  0x000bfe                  _main
-                  0x000c40                  ___delay32
+                  0x0006b4                  _i2c_start
+                  0x0006c6                  _i2c_stop
+                  0x0006d8                  _i2c_restart
+                  0x0006ea                  _spi1Init
+                  0x000760                  _spi2Init
+                  0x0007c0                  _spi1_write
+                  0x0007da                  _spi1_read
+                  0x0007f2                  _adcInit
+                  0x000852                  _adcMeasure
+                  0x00088a                  _rtccInit
+                  0x000890                  _intInit
+                  0x0008dc                  _sht30RH
+                  0x0008fa                  _sht30Temp
+                  0x000918                  _rtc_write_byte
+                  0x000932                  _rtc_read_byte
+                  0x000954                  _rtc_time
+                  0x0009a4                  _rtc_set_time
+                  0x0009da                  _battery_sample
+                  0x000a36                  _lora_init
+                  0x000ada                  _lora_write
+                  0x000af8                  _lora_burst_write
+                  0x000b32                  _lora_read
+                  0x000b4e                  _lora_set_idle
+                  0x000b62                  _lora_set_sleep
+                  0x000b78                  _lora_set_tx
+                  0x000b8e                  _lora_send
+                  0x000bd2                  ___startup
+                  0x000bfc                  _main
+                  0x000c4a                  ___delay32
 
 External Symbols in Program Memory (by name):
 
@@ -209,12 +217,12 @@ External Symbols in Program Memory (by name):
                   0x0002dc                  __RTCCInterrupt
                   0x0002e4                  __USB1Interrupt
                   0x0002f4                  ___addsf3
-                  0x000c40                  ___delay32
+                  0x000c4a                  ___delay32
                   0x0003ae                  ___divsf3
                   0x00051a                  ___floatundisf
                   0x000432                  ___floatunsisf
                   0x0004b2                  ___mulsf3
-                  0x000bd4                  ___startup
+                  0x000bd2                  ___startup
                   0x0002f2                  ___subsf3
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
@@ -226,38 +234,38 @@ External Symbols in Program Memory (by name):
                   0x000482                  __funpack2
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x0007f4                  _adcInit
-                  0x000854                  _adcMeasure
-                  0x0009dc                  _battery_sample
+                  0x0007f2                  _adcInit
+                  0x000852                  _adcMeasure
+                  0x0009da                  _battery_sample
                   0x00064c                  _i2c_init
-                  0x0006da                  _i2c_restart
+                  0x0006d8                  _i2c_restart
                   0x00067e                  _i2c_rx_byte
-                  0x0006b6                  _i2c_start
-                  0x0006c8                  _i2c_stop
+                  0x0006b4                  _i2c_start
+                  0x0006c6                  _i2c_stop
                   0x00065c                  _i2c_tx_byte
-                  0x000892                  _intInit
-                  0x000afa                  _lora_burst_write
-                  0x000a38                  _lora_init
-                  0x000b34                  _lora_read
-                  0x000b90                  _lora_send
-                  0x000b50                  _lora_set_idle
-                  0x000b64                  _lora_set_sleep
-                  0x000b7a                  _lora_set_tx
-                  0x000adc                  _lora_write
-                  0x000bfe                  _main
+                  0x000890                  _intInit
+                  0x000af8                  _lora_burst_write
+                  0x000a36                  _lora_init
+                  0x000b32                  _lora_read
+                  0x000b8e                  _lora_send
+                  0x000b4e                  _lora_set_idle
+                  0x000b62                  _lora_set_sleep
+                  0x000b78                  _lora_set_tx
+                  0x000ada                  _lora_write
+                  0x000bfc                  _main
                   0x0005c4                  _pmd_disable_all
                   0x000608                  _pmd_enable_used
-                  0x000934                  _rtc_read_byte
-                  0x0009a6                  _rtc_set_time
-                  0x000956                  _rtc_time
-                  0x00091a                  _rtc_write_byte
-                  0x00088c                  _rtccInit
-                  0x0008de                  _sht30RH
-                  0x0008fc                  _sht30Temp
-                  0x0006ec                  _spi1Init
-                  0x0007dc                  _spi1_read
-                  0x0007c2                  _spi1_write
-                  0x000762                  _spi2Init
+                  0x000932                  _rtc_read_byte
+                  0x0009a4                  _rtc_set_time
+                  0x000954                  _rtc_time
+                  0x000918                  _rtc_write_byte
+                  0x00088a                  _rtccInit
+                  0x0008dc                  _sht30RH
+                  0x0008fa                  _sht30Temp
+                  0x0006ea                  _spi1Init
+                  0x0007da                  _spi1_read
+                  0x0007c0                  _spi1_write
+                  0x000760                  _spi2Init
                   0x0005bc                  _sys_init
 
 Memory Configuration
@@ -307,7 +315,7 @@ LOAD build/default/debug/main.o
                     0x0001                  __MPLAB_DEBUG = 0x1
                     0x0001                  __DEBUG = 0x1
 LOAD pPIC24Fxxx
-LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libfx-elf.a
+LOAD c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libfx-elf.a
                     0xabf8                  __CONFIG4 = 0xabf8
                     0xabfa                  __CONFIG3 = 0xabfa
                     0xabfc                  __CONFIG2 = 0xabfc
@@ -328,11 +336,11 @@ LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libfx-elf.a
 
 .text             0x000200        0x3a2
  *(.init)
- .init            0x000200         0x4c c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+ .init            0x000200         0x4c c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
                   0x000200                  __reset
                   0x00023c                  __psv_init
- .init            0x00024c         0x7c c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+ .init            0x00024c         0x7c c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
                   0x000252                  __data_init_standard
                   0x000252                  __data_init
  *(.user_init)
@@ -350,37 +358,37 @@ LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libfx-elf.a
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x0002f0          0x2 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
+                  0x0002f0          0x2 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
                   0x0002f0                  __crt_start_mode
                   0x0002f0                  __crt_start_mode_normal
- .libm.subsf3     0x0002f2         0xbc c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(addsf3.eo)
+ .libm.subsf3     0x0002f2         0xbc c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(addsf3.eo)
                   0x0002f2                  ___subsf3
                   0x0002f4                  ___addsf3
- .libm.divfs3     0x0003ae         0x84 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(divsf3.eo)
+ .libm.divfs3     0x0003ae         0x84 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(divsf3.eo)
                   0x0003ae                  ___divsf3
  .libm.floatunsisf
-                  0x000432          0x4 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
+                  0x000432          0x4 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
                   0x000432                  ___floatunsisf
- .libm.fpack      0x000436         0x4c c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(fpack.eo)
+ .libm.fpack      0x000436         0x4c c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(fpack.eo)
                   0x000436                  __fpack
  .libm.funpack2
-                  0x000482         0x10 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(funpack2.eo)
+                  0x000482         0x10 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(funpack2.eo)
                   0x000482                  __funpack2
  .libm.fPropagateNaN
-                  0x000492         0x12 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(futil.eo)
+                  0x000492         0x12 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(futil.eo)
                   0x000492                  __fPropagateNaN
  .libm.fbobExit
-                  0x0004a4          0x8 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(futil.eo)
+                  0x0004a4          0x8 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(futil.eo)
                   0x0004a4                  __fbopExit
  .libm.fbopReturnNaN
-                  0x0004ac          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(futil.eo)
+                  0x0004ac          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(futil.eo)
                   0x0004ac                  __fbopReturnNaN
- .libm.mulsf3     0x0004b2         0x68 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
+ .libm.mulsf3     0x0004b2         0x68 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
                   0x0004b2                  ___mulsf3
  .libm.floatundisf
-                  0x00051a         0x5e c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
+                  0x00051a         0x5e c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
                   0x00051a                  ___floatundisf
- .libm.funpack    0x000578         0x2a c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(funpack.eo)
+ .libm.funpack    0x000578         0x2a c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(funpack.eo)
                   0x000578                  __funpack
 
 usercode
@@ -401,22 +409,22 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x36fa
+.debug_info       0x000000       0x370b
  *(.debug_info)
- .debug_info      0x000000       0x36fa build/default/debug/main.o
+ .debug_info      0x000000       0x370b build/default/debug/main.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x29f
  *(.debug_abbrev)
  .debug_abbrev    0x000000        0x29f build/default/debug/main.o
 
-.debug_line       0x000000        0x396
+.debug_line       0x000000        0x3b5
  *(.debug_line)
- .debug_line      0x000000        0x396 build/default/debug/main.o
+ .debug_line      0x000000        0x3b5 build/default/debug/main.o
 
-.debug_frame      0x000000        0x43c
+.debug_frame      0x000000        0x3f0
  *(.debug_frame)
- .debug_frame     0x000000        0x43c build/default/debug/main.o
+ .debug_frame     0x000000        0x3f0 build/default/debug/main.o
 
 .debug_str        0x000000        0x1aa
  *(.debug_str)
@@ -1288,9 +1296,9 @@ __CONFIG1
                     0x0230                  UART2 = 0x230
                     0x0230                  _UART2 = 0x230
 START GROUP
-LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a
-LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a
-LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-c-elf.a
+LOAD c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a
+LOAD c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a
+LOAD c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-c-elf.a
 END GROUP
 OUTPUT(dist/default/debug/code.debug.elf elf32-pic30)
 LOAD default_isr
@@ -1306,29 +1314,29 @@ __c30_signature
  __c30_signature
                   0x0004d6          0x6 build/default/debug/main.o
  __c30_signature
-                  0x0004dc          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+                  0x0004dc          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x0004e2          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x0004e2          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
  __c30_signature
-                  0x0004e8          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x0004e8          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
  __c30_signature
-                  0x0004ee          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(addsf3.eo)
+                  0x0004ee          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(addsf3.eo)
  __c30_signature
-                  0x0004f4          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(divsf3.eo)
+                  0x0004f4          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(divsf3.eo)
  __c30_signature
-                  0x0004fa          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
+                  0x0004fa          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
  __c30_signature
-                  0x000500          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(fpack.eo)
+                  0x000500          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(fpack.eo)
  __c30_signature
-                  0x000506          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(funpack2.eo)
+                  0x000506          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(funpack2.eo)
  __c30_signature
-                  0x00050c          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(futil.eo)
+                  0x00050c          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(futil.eo)
  __c30_signature
-                  0x000512          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
+                  0x000512          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
  __c30_signature
-                  0x000518          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
+                  0x000518          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
  __c30_signature
-                  0x00051e          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a(funpack.eo)
+                  0x00051e          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(funpack.eo)
 
 .nbss               0x0850          0xa
  .nbss              0x0850          0xa build/default/debug/main.o
@@ -1380,46 +1388,46 @@ __c30_signature
 .const              0x85a2         0x1a load address 0x0005a2  
  .const             0x85a2         0x1a build/default/debug/main.o
 
-.text             0x0005bc        0x684
- .text            0x0005bc        0x684 build/default/debug/main.o
+.text             0x0005bc        0x68e
+ .text            0x0005bc        0x68e build/default/debug/main.o
                   0x0005bc                  _sys_init
                   0x0005c4                  _pmd_disable_all
                   0x000608                  _pmd_enable_used
                   0x00064c                  _i2c_init
                   0x00065c                  _i2c_tx_byte
                   0x00067e                  _i2c_rx_byte
-                  0x0006b6                  _i2c_start
-                  0x0006c8                  _i2c_stop
-                  0x0006da                  _i2c_restart
-                  0x0006ec                  _spi1Init
-                  0x000762                  _spi2Init
-                  0x0007c2                  _spi1_write
-                  0x0007dc                  _spi1_read
-                  0x0007f4                  _adcInit
-                  0x000854                  _adcMeasure
-                  0x00088c                  _rtccInit
-                  0x000892                  _intInit
-                  0x0008de                  _sht30RH
-                  0x0008fc                  _sht30Temp
-                  0x00091a                  _rtc_write_byte
-                  0x000934                  _rtc_read_byte
-                  0x000956                  _rtc_time
-                  0x0009a6                  _rtc_set_time
-                  0x0009dc                  _battery_sample
-                  0x000a38                  _lora_init
-                  0x000adc                  _lora_write
-                  0x000afa                  _lora_burst_write
-                  0x000b34                  _lora_read
-                  0x000b50                  _lora_set_idle
-                  0x000b64                  _lora_set_sleep
-                  0x000b7a                  _lora_set_tx
-                  0x000b90                  _lora_send
-                  0x000bd4                  ___startup
-                  0x000bfe                  _main
+                  0x0006b4                  _i2c_start
+                  0x0006c6                  _i2c_stop
+                  0x0006d8                  _i2c_restart
+                  0x0006ea                  _spi1Init
+                  0x000760                  _spi2Init
+                  0x0007c0                  _spi1_write
+                  0x0007da                  _spi1_read
+                  0x0007f2                  _adcInit
+                  0x000852                  _adcMeasure
+                  0x00088a                  _rtccInit
+                  0x000890                  _intInit
+                  0x0008dc                  _sht30RH
+                  0x0008fa                  _sht30Temp
+                  0x000918                  _rtc_write_byte
+                  0x000932                  _rtc_read_byte
+                  0x000954                  _rtc_time
+                  0x0009a4                  _rtc_set_time
+                  0x0009da                  _battery_sample
+                  0x000a36                  _lora_init
+                  0x000ada                  _lora_write
+                  0x000af8                  _lora_burst_write
+                  0x000b32                  _lora_read
+                  0x000b4e                  _lora_set_idle
+                  0x000b62                  _lora_set_sleep
+                  0x000b78                  _lora_set_tx
+                  0x000b8e                  _lora_send
+                  0x000bd2                  ___startup
+                  0x000bfc                  _main
 
-.init.delay32     0x000c40         0x1c
- .init.delay32    0x000c40         0x1c c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                  0x000c40                  ___delay32
+.init.delay32     0x000c4a         0x1c
+ .init.delay32    0x000c4a         0x1c c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x000c4a                  ___delay32
 
-.dinit            0x000c5c          0x8
- .dinit           0x000c5c          0x8 data_init
+.dinit            0x000c66          0x8
+ .dinit           0x000c66          0x8 data_init

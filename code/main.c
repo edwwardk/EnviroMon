@@ -30,18 +30,18 @@ int main(void) {
     uint8_t message[] = "test message";
     
     uint8_t temperature[12] = {
-        0,
-        1,
-        2,
-        3,
-        1,
-        22,
-        03,
-        29,
-        10,
-        25,
-        30,
-        25
+        0, // to - 0
+        1, // from - 1
+        2, // id - 2
+        3, // flags - 3
+        1, // sample id - 4
+        22, // year - 5
+        03, // month - 6
+        29, // day - 7
+        10, // hour - 8
+        25, // minute - 9
+        30, // second - 10
+        25 // value - 11
     };
     
     uint8_t humidity[12] = {
@@ -53,12 +53,27 @@ int main(void) {
     };
     
     
-    
+    int i = 10;
     // check current time
     while (1) {
         lora_send(temperature, sizeof(temperature));
-        __delay_ms(500);
-        lora_send(message, sizeof(message));
+        i++;
+        
+        temperature[11] = i;
+        
+        if (i > 240) {
+            i = 0;
+        }
+        
+        /*
+        for (i = 20; i < 75; i++) {
+            temperature[11] = i;
+            lora_send(temperature, sizeof(temperature));
+            __delay_ms(500);
+        }
+        */
+        
+        
         
         
         /*
