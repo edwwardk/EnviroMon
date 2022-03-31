@@ -67,7 +67,7 @@
 
 // constant defs
 // pps inputs
-#define INT1 13 // pin 11 - rp13
+#define INT1 _RP13R // pin 11 - rp13
 #define MISO 21 // pin 38 - rp21
 #define MEMDI 22 // pin 2 -  rp22
 
@@ -92,12 +92,16 @@
 #define VDDVAL 2.8 // system vdd
 
 // global variables
-
+enum {
+    auto_mode,
+    manual_mode
+};
+uint8_t run_mode = manual_mode;
 
 // func decs
 void sys_init();
 void pmd_disable_all();
-void pmd_enable_all();
+//void pmd_enable_all();
 
 // initialize misc system cfgs
 void sys_init() {
@@ -150,7 +154,6 @@ void pmd_disable_all() {
     _RTCCMD = 1;
     
     // disable pmp
-    // parallel master port
     _PMPMD = 1;
     
     // disable crc
@@ -177,6 +180,7 @@ void pmd_disable_all() {
 }
 
 // enable used and unknown modules
+/*
 void pmd_enable_used() {
     // enable all timers
     _T5MD = 0;
@@ -247,6 +251,7 @@ void pmd_enable_used() {
     // enable usb
     _USB1MD = 0;
 }
+*/
 
 // protocol includes
 #include "i2c-env.h"
@@ -264,7 +269,7 @@ void pmd_enable_used() {
 #include "spi-mem-env.h"
 
 // startup sequence
-#include "sys-start-env.h"
+#include "sys-run-env.h"
 
 // operation sequences
 #include "sample-env.h"

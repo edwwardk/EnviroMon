@@ -52,11 +52,17 @@ void __startup() {
     // device inits
     lora_init(); // init lora module
     
+    // setup debug led D8 - RB3
+    _TRISB3 = 0;
+    _ODC3 = 0;
+    
+    // setup other debug led D12 - 
+    _TRISA3 = 0;
+    _ODA3 = 0;
     
     startComplete = 1; // set start complete
     __delay_ms(100); // setup time
 }
-
 #endif
 
 

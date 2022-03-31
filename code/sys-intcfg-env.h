@@ -52,6 +52,10 @@ void intInit() {
     _INT0EP = 0; // int0
     _INT1EP = 0; // int1
     
+    // set both interrupts priority 1
+    _INT0IP = 1; // int0
+    _INT1IP = 1; // int1
+    
     // clear interrupt flags
     _INT0IF = 0; // int0
     _INT1IF = 0; // int1

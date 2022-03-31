@@ -19,7 +19,7 @@
 #define RFM95_INT 2 // interrupt
 #define RF95_FREQ 915.0 // center frequency
 
-#define MESSAGE_LENGTH 2 // fixed message length
+#define MESSAGE_LENGTH 5 // fixed message length
 
 #define LORA_ARDUINO_ADDRESS 69
 #define LORA_MONITOR_ADDRESS 70
@@ -62,6 +62,11 @@ enum {
   battery_id
 };
 
+// sample unions
+union {
+  float ufloat;
+  uint8_t ubytes[4];
+} union_temp, union_humidity, union_battery;
 
 // function declarations
 void process_data(uint8_t[]);
@@ -155,12 +160,17 @@ void process_data(uint8_t data[]) {
   MQTT_connect();
 
   // determine data type
+  int i;
   switch (data[lora_sampleid]) {
 
     // temperature sample handle
     case temperature_id:
-      Serial.print("temp: "); Serial.println(data[lora_value]);
-      if (!temp.publish((int32_t) data[lora_value])) {
+      for (i = 0; i < (uint8_t)sizeof(union_temp.ubytes); i++) {
+        union_temp.ubytes[i] = data[i+1];
+      }
+
+      Serial.print("temp: "); Serial.println(union_temp.ufloat);
+      if (!temp.publish(union_temp.ufloat)) {
         Serial.println("temp failed!");
       } else {
         Serial.println("temp sent!");
@@ -169,8 +179,12 @@ void process_data(uint8_t data[]) {
 
     // humidity sample handle
     case humidity_id:
-      Serial.print("humidity: "); Serial.println(data[lora_value]);
-      if (!humidity.publish((int32_t) data[lora_value])) {
+      for (i = 0; i < (uint8_t)sizeof(union_humidity.ubytes); i++) {
+        union_humidity.ubytes[i] = data[i+1];
+      }
+
+      Serial.print("humidity: "); Serial.println(union_humidity.ufloat);
+      if (!humidity.publish(union_humidity.ufloat)) {
         Serial.println("humidity failed!");
       } else {
         Serial.println("humidity sent!");
@@ -179,8 +193,12 @@ void process_data(uint8_t data[]) {
 
     // battery sample handle
     case battery_id:
-      Serial.print("battery: "); Serial.println(data[lora_value]);
-      if (!battery.publish((int32_t) data[lora_value])) {
+      for (i = 0; i < (uint8_t)sizeof(union_battery.ubytes); i++) {
+        union_battery.ubytes[i] = data[i+1];
+      }
+
+      Serial.print("battery: "); Serial.println(union_battery.ufloat);
+      if (!battery.publish(union_battery.ufloat)) {
         Serial.println("battery failed!");
       } else {
         Serial.println("battery sent!");

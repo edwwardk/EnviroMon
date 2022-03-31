@@ -19,10 +19,10 @@
 #define ADCADDRESS 0x97
 
 // func decs
-float battery_sample();
+float battery_voltage();
 
 // sample battery voltage
-float battery_sample() {
+float battery_voltage() {
     uint8_t msb8, lsb8;
     uint16_t msb16 = 0, lsb16 = 0, adata = 0;
     
@@ -38,6 +38,7 @@ float battery_sample() {
     
     return (((float)adata * (2.8/1024.0)) * 2.0) + 0.43;
 }
+
 #endif
 
 

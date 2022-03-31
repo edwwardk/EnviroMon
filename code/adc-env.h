@@ -31,6 +31,8 @@
 // func decs
 void adcInit();
 float adcMeasure(uint8_t);
+void vref_enable();
+void vref_disable();
 
 // initialize adc
 void adcInit() {
@@ -90,6 +92,17 @@ float adcMeasure(uint8_t ch) {
     
     // return calced voltage
     return (ADC1BUF0 * ((VREFP - VREFN) / 1024.0));
+}
+
+// enable vref
+void vref_enable() {
+    VREFEN = 1;
+    __delay_ms(1); // settling time
+}
+
+// disable vref
+void vref_disable() {
+    VREFEN = 0;
 }
 #endif
 
