@@ -123,7 +123,7 @@ void loop() {
   }
 
   // uncomment if spamming
-  //delay(3000);
+  // delay(3000);
 }
 
 
@@ -170,11 +170,11 @@ void process_data(uint8_t data[]) {
     // humidity sample handle
     case humidity_id:
       Serial.print("humidity: "); Serial.println(data[lora_value]);
-        if (!humidity.publish((int32_t) data[lora_value])) {
-          Serial.println("humidity failed!");
-        } else {
-          Serial.println("humidity sent!");
-        }
+      if (!humidity.publish((int32_t) data[lora_value])) {
+        Serial.println("humidity failed!");
+      } else {
+        Serial.println("humidity sent!");
+      }
     break;
 
     // battery sample handle
