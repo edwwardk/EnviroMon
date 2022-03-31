@@ -8,15 +8,8 @@
 #include <xc.h>
 #include "sys-cfg-env.h"
 
-// constant defs
-#define SHT30RHPIN AN5
-#define SHT30TEMPPIN AN6
-
-// global variables
-
-
 // func decs
-uint8_t seconds, minutes, hours, days, months, years, controlreg;
+void test_routine();
 
 // main program
 int main(void) {
@@ -27,67 +20,43 @@ int main(void) {
     _TRISB3 = 0;
     _ODC3 = 0;
     
-    uint8_t message[] = "test message";
+    test_routine();
     
-    uint8_t temperature[12] = {
-        0, // to - 0
-        1, // from - 1
-        2, // id - 2
-        3, // flags - 3
-        1, // sample id - 4
-        22, // year - 5
-        03, // month - 6
-        29, // day - 7
-        10, // hour - 8
-        25, // minute - 9
-        30, // second - 10
-        25 // value - 11
-    };
-    
-    uint8_t humidity[12] = {
-        
-    };
-    
-    uint8_t battery[12] = {
-        
-    };
-    
-    
-    int i = 10;
+    // monitoring loop
+    while(1) {
+        // sample sensors
+        // transmit samples
+        // sleep
+    }
+    return 0;
+}
+
+void test_routine() {
+    uint8_t t = 1, h = 2, b = 3;
     // check current time
     while (1) {
         lora_send(temperature, sizeof(temperature));
-        i++;
+        lora_send(humidity, sizeof(humidity));
+        lora_send(battery, sizeof(battery));
         
-        temperature[11] = i;
         
-        if (i > 240) {
-            i = 0;
+        temperature[sample_value] += t;
+        humidity[sample_value] += h;
+        battery[sample_value] -= b;
+        
+        
+        if (temperature[sample_value] > 35) {
+            temperature[sample_value] = 5;
         }
         
-        /*
-        for (i = 20; i < 75; i++) {
-            temperature[11] = i;
-            lora_send(temperature, sizeof(temperature));
-            __delay_ms(500);
+        if (humidity[sample_value] > 80) {
+            humidity[sample_value] = 10;
         }
-        */
         
+        if (battery[sample_value] < 10) {
+            battery[sample_value] = 90;
+        }
         
-        
-        
-        /*
-        seconds = rtc_time(SECONDS);
-        minutes = rtc_time(MINUTES);
-        hours = rtc_time(HOURS);
-        days = rtc_time(DAYS);
-        months = rtc_time(MONTHS);
-        years = rtc_time(YEARS);
-        controlreg = rtc_read_byte(CONTROL);
-        */
-        __delay_ms(1000);
+        __delay_ms(7500);
     }
-    
-    while(1); // trap program
-    return 0;
 }

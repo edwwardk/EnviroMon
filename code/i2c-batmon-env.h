@@ -18,9 +18,6 @@
 // constant defs
 #define ADCADDRESS 0x97
 
-// global variables
-
-
 // func decs
 float battery_sample();
 

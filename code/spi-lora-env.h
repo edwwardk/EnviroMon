@@ -239,12 +239,15 @@
 #define LORA_TX_PWR 13
 #define LORA_FREQUENCY 915.0
 
+#define LORA_ARDUINO_ADDRESS 69
+#define LORA_MONITOR_ADDRESS 70
+
 // global variables
 uint8_t _mode;
 
 enum {
-    _txHeaderTo = 1,
-    _txHeaderFrom,
+    _txHeaderTo = LORA_ARDUINO_ADDRESS,
+    _txHeaderFrom = LORA_MONITOR_ADDRESS,
     _txHeaderId,
     _txHeaderFlags
 };

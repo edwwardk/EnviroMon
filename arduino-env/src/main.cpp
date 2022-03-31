@@ -11,6 +11,7 @@
 #include <Dns.h>
 #include <Dhcp.h>
 
+
 // rfm95
 #define RH_FLAGS_ACK 0x80
 #define RFM95_CS 9 // chip select
@@ -18,27 +19,28 @@
 #define RFM95_INT 2 // interrupt
 #define RF95_FREQ 915.0 // center frequency
 
+#define MESSAGE_LENGTH 2 // fixed message length
+
+#define LORA_ARDUINO_ADDRESS 69
+#define LORA_MONITOR_ADDRESS 70
+
 RH_RF95 rf95(RFM95_CS, RFM95_INT); // instance of radio driver
 
-int16_t rx_count = 0;
-uint8_t rx_buf[RH_RF95_MAX_MESSAGE_LEN];
-uint8_t rx_recv_len;
-
-char print_buf[32] = "\0";
+uint8_t rx_buf[MESSAGE_LENGTH];
+uint8_t rx_recv_len = MESSAGE_LENGTH;
 
 
-// mqtt and ethernet
-//byte mac[] = {0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x02}; // home mac
+// ethernet
 byte mac[] = {0x90, 0xA2, 0xDA, 0x10, 0x02, 0x0B}; // school mac
-//IPAddress iotIP (192, 168, 0, 105); // home ip address
-//IPAddress iotIP (10, 1, 74, 5); // school ip?
 
+EthernetClient client;
+
+
+// mqtt
 #define AIO_SERVER "io.adafruit.com"
 #define AIO_SERVERPORT 1883
 #define AIO_USERNAME "edwward"
 #define AIO_KEY "aio_Rgmw87fzyaUj4rX2qVDL5s9yhEDL"
-
-EthernetClient client;
 
 Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO_KEY);
 
@@ -46,13 +48,24 @@ Adafruit_MQTT_Publish temp = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/e
 Adafruit_MQTT_Publish humidity = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/enviromon.humidity");
 Adafruit_MQTT_Publish battery = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/enviromon.battery");
 
-// sample variables
-uint8_t sampleid;
-uint8_t year, month, day, hour, minute, second;
-uint32_t temperature_value, humidity_value, battery_value;
+
+// lora message bytes
+enum {
+  lora_sampleid, // sample type id
+  lora_value // sample value
+};
+
+// sample type ids
+enum {
+  temperature_id = 1,
+  humidity_id,
+  battery_id
+};
+
 
 // function declarations
 void process_data(uint8_t[]);
+
 
 // run setup routine
 void setup() {
@@ -68,58 +81,51 @@ void setup() {
   Serial.begin(9600);
   delay(100);
 
-  // check for init
+  // check for lora init
   while (!rf95.init()) {
     Serial.println("radio init failed :(");
     while (1);
   }
   Serial.println("radio init success!");
 
-  // set frequency
+  // set lora frequency
   if (!rf95.setFrequency(RF95_FREQ)) {
     Serial.println("cannot set frequency");
     while (1);
   }
   Serial.print("frequency set to: "); Serial.println(RF95_FREQ);
 
-  // set to receive all frames
-  rf95.setPromiscuous(true);
-
-  Serial.println("aaaaaaaaaaaaaa");
+  // set address to arduino address
+  rf95.setThisAddress(LORA_ARDUINO_ADDRESS);
 
   // init ethernet
   Ethernet.begin(mac);
   delay(1000);
 
   // print ip address
-  Serial.println(Ethernet.localIP());
+  Serial.print("ip: "); Serial.println(Ethernet.localIP());
 }
+
 
 // main program loop
 void loop() {
-  rx_recv_len = sizeof(rx_buf);
+  rf95.waitAvailable(50); // wait for message, check 50ms
 
-  if (rf95.available()) {
-    if (rf95.recv(rx_buf, &rx_recv_len)) {
-      char is_ack[4] = {""};
-      if (rf95.headerFlags() & RH_FLAGS_ACK) {
-        memcpy(is_ack, "Ack\0", 3);
-      }
-      rx_buf[rx_recv_len] = '\0';
+  if (rf95.recv(rx_buf, &rx_recv_len)) { // receive message
+    Serial.println(); // seperate debug messages with newline
 
-      Serial.println();
-
-      snprintf(print_buf, sizeof(print_buf), "msg: %s \r", rx_buf);
-      Serial.println(print_buf);
-
-      // process and send data
-      process_data(rx_buf);
+    uint8_t i;
+    for (i = 0; i < sizeof(rx_buf); i++) {
+      Serial.println(rx_buf[i]);
     }
-    
+
+    process_data(rx_buf); // process and send data
   }
+
   // uncomment if spamming
-  delay(1500);
+  //delay(3000);
 }
+
 
 // connect and reconnect to mqtt server as necessary
 void MQTT_connect() {
@@ -139,93 +145,55 @@ void MQTT_connect() {
     delay(5000);
   }
 
-  Serial.println("mqtt connected!");
+  Serial.println("mqtt connected!"); Serial.println("");
 }
 
-// publish temperature
-void MQTT_publish_temperature() {
-  // ensure connection to mqtt server
-  MQTT_connect();
-
-  // try to send temp
-  Serial.println("sending temp...");
-  if (!temp.publish(temperature_value)) {
-    Serial.println("temp failed!");
-  } else {
-    Serial.println("temp sent!");
-  }
-
-  // ping server to keep connection alive
-  if(!mqtt.ping()) {
-    mqtt.disconnect();
-  }
-}
-
-// publish humidity
-void MQTT_publish_humidity() {
-  // ensure connection to mqtt server
-  MQTT_connect();
-
-  // try to send humidity
-  Serial.println("sending humidity...");
-  if (!humidity.publish(humidity_value)) {
-    Serial.println("humidity failed!");
-  } else {
-    Serial.println("humidity sent!");
-  }
-
-  // ping server to keep connection alive
-  if(!mqtt.ping()) {
-    mqtt.disconnect();
-  }
-}
-
-// publish battery
-void MQTT_publish_battery() {
-  // ensure connection to mqtt server
-  MQTT_connect();
-
-  // try to send temp
-  Serial.println("sending battery...");
-  if (!battery.publish(battery_value)) {
-    Serial.println("battery failed!");
-  } else {
-    Serial.println("battery sent!");
-  }
-
-  // ping server to keep connection alive
-  if(!mqtt.ping()) {
-    mqtt.disconnect();
-  }
-}
 
 // process received data
 void process_data(uint8_t data[]) {
-  year = data[5];
-  month = data[6];
-  day = data[7];
-  hour = data[8];
-  minute = data[9];
+  // ensure connection to broker
+  MQTT_connect();
 
-  for (int i = 0; i < 12; i++) {
-    Serial.println(data[i]);
-  }
+  // determine data type
+  switch (data[lora_sampleid]) {
 
-  switch (data[4]) {
-    case 1: // temp id = 0
-      temperature_value = data[11];
-      Serial.println(temperature_value);
-      MQTT_publish_temperature();
+    // temperature sample handle
+    case temperature_id:
+      Serial.print("temp: "); Serial.println(data[lora_value]);
+      if (!temp.publish((int32_t) data[lora_value])) {
+        Serial.println("temp failed!");
+      } else {
+        Serial.println("temp sent!");
+      }
     break;
-    case 2: // humidity id = 1
-      humidity_value = data[11];
-      MQTT_publish_humidity();
+
+    // humidity sample handle
+    case humidity_id:
+      Serial.print("humidity: "); Serial.println(data[lora_value]);
+        if (!humidity.publish((int32_t) data[lora_value])) {
+          Serial.println("humidity failed!");
+        } else {
+          Serial.println("humidity sent!");
+        }
     break;
-    case 3: // vbat id = 2
-      battery_value = data[11];
-      MQTT_publish_battery();
+
+    // battery sample handle
+    case battery_id:
+      Serial.print("battery: "); Serial.println(data[lora_value]);
+      if (!battery.publish((int32_t) data[lora_value])) {
+        Serial.println("battery failed!");
+      } else {
+        Serial.println("battery sent!");
+      }
     break;
+
+    // invalid id
     default:
       Serial.println("invalid data!");
+  }
+
+  // ping server to keep connection alive
+  if(!mqtt.ping()) {
+    mqtt.disconnect();
   }
 }

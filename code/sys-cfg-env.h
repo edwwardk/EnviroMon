@@ -258,7 +258,6 @@ void pmd_enable_used() {
 #include "sys-intcfg-env.h"
 
 // device specific includes
-#include "adc-sht30-env.h"
 #include "i2c-rtc-env.h"
 #include "i2c-batmon-env.h"
 #include "spi-lora-env.h"
@@ -266,6 +265,9 @@ void pmd_enable_used() {
 
 // startup sequence
 #include "sys-start-env.h"
+
+// operation sequences
+#include "sample-env.h"
 
 // isrs includes
 #include "sys-isr-env.h"
