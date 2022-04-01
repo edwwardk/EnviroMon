@@ -17,11 +17,9 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/300302634/EnviroMon/code/sample-env.h</file>
-            <file>file:/C:/Users/300302634/EnviroMon/code/sys-run-env.h</file>
-            <file>file:/C:/Users/300302634/EnviroMon/code/sys-cfg-env.h</file>
-            <file>file:/C:/Users/300302634/EnviroMon/code/main.c</file>
-            <file>file:/C:/Users/300302634/EnviroMon/code/sys-isr-env.h</file>
+            <file>file:/C:/Users/eddyk/EnviroMon/code/main.c</file>
+            <file>file:/C:/Users/eddyk/EnviroMon/code/sys-cfg-env.h</file>
+            <file>file:/C:/Users/eddyk/EnviroMon/code/sys-run-env.h</file>
         </group>
     </open-files>
 </project-private>

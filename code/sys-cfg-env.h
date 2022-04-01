@@ -46,8 +46,8 @@
 #pragma config IESO = ON                // Internal External Switchover (IESO mode (Two-Speed Start-up) enabled)
 
 // CONFIG1
-#pragma config WDTPS = PS32768          // Watchdog Timer Postscaler (1:32,768)
-#pragma config FWPSA = PR128            // WDT Prescaler (Prescaler ratio of 1:128)
+#pragma config WDTPS = PS8192           // Watchdog Timer Postscaler (1:8,192)
+#pragma config FWPSA = PR32             // WDT Prescaler (Prescaler ratio of 1:32)
 #pragma config WINDIS = OFF             // Windowed WDT (Standard Watchdog Timer enabled,(Windowed-mode is disabled))
 #pragma config FWDTEN = OFF             // Watchdog Timer (Watchdog Timer is disabled)
 #pragma config ICS = PGx1               // Emulator Pin Placement Select bits (Emulator functions are shared with PGEC1/PGED1)

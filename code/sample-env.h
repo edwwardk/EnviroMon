@@ -23,8 +23,8 @@
 #include "sys-cfg-env.h"
 
 // constant defs
-#define SHT30RHPIN AN2
-#define SHT30TEMPPIN AN1
+#define SHT30RHPIN AN5
+#define SHT30TEMPPIN AN6
 
 #define SAMPLELENGTH 5
 

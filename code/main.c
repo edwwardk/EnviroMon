@@ -8,11 +8,6 @@
 #include <xc.h>
 #include "sys-cfg-env.h"
 
-// func decs
-void test_routine();
-
-uint16_t rtccregisters[20];
-
 // main program
 int main(void) {
     __startup(); // perform startup routine
@@ -23,5 +18,6 @@ int main(void) {
         main_sequence();
         __delay_us(1);
     };
+    
     return 0;
 }
