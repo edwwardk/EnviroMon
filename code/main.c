@@ -1,5 +1,5 @@
 /*
- * enviromon main code
+ * main.c
  * written by edward kneller
  * 
  */

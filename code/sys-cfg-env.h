@@ -2,17 +2,6 @@
  * sys-cfg-env.h
  * written by edward kneller
  * 
- * sets configuration bits
- * defines pps pins
- * configures misc system parts
- * 
- * ~~~ defines ~~~
- * 
- * 
- * ~~~ global variables ~~~
- * 
- * 
- * ~~~ functions ~~~
  */
 
 // include catch clause

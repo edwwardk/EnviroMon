@@ -19,7 +19,6 @@
       <itemPath>i2c-batmon-env.h</itemPath>
       <itemPath>sample-env.h</itemPath>
       <itemPath>sys-run-env.h</itemPath>
-      <itemPath>sys-timer-env.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -266,8 +265,6 @@
         <property key="programoptions.programuserotp" value="false"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
       </snap>
-      <item path="sys-timer-env.h" ex="true" overriding="false">
-      </item>
     </conf>
   </confs>
 </configurationDescriptor>

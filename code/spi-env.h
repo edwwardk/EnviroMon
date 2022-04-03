@@ -2,9 +2,6 @@
  * spi-env.h
  * written by edward kneller
  * 
- * configures pps, control regs, initial states
- * includes xc.h
- * 
  */
 
 // include catch clause
@@ -14,12 +11,6 @@
 // ensure sys inclusions
 #include <xc.h>
 #include "sys-cfg-env.h"
-
-// constant defs
-
-
-// global variables
-
 
 // func decs
 void spi1Init();

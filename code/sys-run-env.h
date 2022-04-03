@@ -1,20 +1,7 @@
 /* 
- * sys-start-env.h
+ * sys-run-env.h
  * written by edward kneller
  * 
- * determines startup sequence
- * runs once on reset/power on
- * 
- * 
- * ~~~ defines ~~~
- * 
- * 
- * ~~~ global variables ~~~
- * startComplete - tracks if startup has been performed
- * 
- * ~~~ functions ~~~
- * void __startup();
- * - performs startup routine
  */
 
 // include catch clause

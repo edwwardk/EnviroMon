@@ -1,9 +1,6 @@
 /* 
- * TEMPLATE.h
+ * spi-lora-env.h
  * written by edward kneller
- * 
- * configures pps, control regs, initial states
- * includes xc.h
  * 
  */
 
