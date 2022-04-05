@@ -39,30 +39,28 @@ void __attribute__((__interrupt__, no_auto_psv)) _INT0Interrupt(void) {
     _INT0IF = 0; // reset int0 flag
     
     // switch run mode
-    switch (run_mode) {
-        case manual_mode:
-            run_mode = auto_mode;
-        break;
+    if (run_mode != manual_mode) {
+        // set manual mode if not in manual
+        run_mode = manual_mode; // set manual mode
+        _RA3 = 1; // turn on LED for manual mode
+        _RTCIE = 0; // disable rtcc interrupt
         
-        case auto_mode:
-            run_mode = manual_mode;
-        break;
+    } else {
+        // set auto mode if current in manual
+        run_mode = auto_mode; // set auto mode if current in manual
+        _RA3 = 0; // turn off led
+        _RTCIE = 1; // enable rtcc interrupt
     }
-    
-    main_sequence(); // run  main sequence
 }
 
 // int1 isr
 void __attribute__((__interrupt__, no_auto_psv)) _INT1Interrupt(void) {
     _INT1IF = 0; // reset int1 flag
-    
 }
 
 // rtcc isr
 void __attribute__((__interrupt__, no_auto_psv)) _RTCCInterrupt(void) {
     _RTCIF = 0; // reset rtcc flag
-    
-    main_sequence(); // run  main sequence
 }
 #endif
 

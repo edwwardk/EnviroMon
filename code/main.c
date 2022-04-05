@@ -15,7 +15,7 @@ int main(void) {
     
     // main loop
     while(1) {
-        main_sequence();
+        main_sequence(); // only loop if in auto mode
         __delay_us(1);
     };
     

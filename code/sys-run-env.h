@@ -30,11 +30,11 @@ void __startup() {
     pmd_disable_all(); // disable all peripheral modules
     
     // module inits
-    intInit(); // init external interrupts
     adcInit(); // init adc module
     i2c_init(); // init i2c module
     spi1Init(); // init spi1 module
-    spi2Init(); // init spi2 module
+    //spi2Init(); // init spi2 module
+    
     
     // device inits
     lora_init(); // init lora module
@@ -43,12 +43,19 @@ void __startup() {
     _TRISB3 = 0;
     _ODC3 = 0;
     
-    // setup other debug led D12 - 
+    // setup other debug led D12 - RA3
     _TRISA3 = 0;
     _ODA3 = 0;
     
+    // configure external interrupts
+    int_init(); // init external interrupts
+    
+    // configure rtcc
+    //rtcc_init(); // init rtcc module
+    
+    
     startComplete = 1; // set start complete
-    __delay_ms(100); // setup time
+    __delay_ms(200); // setup time
 }
 #endif
 

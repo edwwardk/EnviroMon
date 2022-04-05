@@ -407,6 +407,7 @@ void lora_send(uint8_t data[], uint8_t length) {
     lora_set_tx(); // start tx
     __delay_ms(100); // wait for tx
     lora_set_sleep(); // sleep for power use reduction
+    __delay_ms(10); // sleep mode time
 }
 #endif
 

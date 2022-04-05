@@ -61,19 +61,6 @@ float sht30_temperature(uint8_t);
 
 // perform main operation sequence
 void main_sequence() {
-    switch (run_mode) {
-        case manual_mode:
-            _RTCIE = 0; // disable rtcc interrupt
-            _RA3 = 1; // turn on LED
-        break;
-            
-        case auto_mode:
-            _RTCIE = 1; // enable rtcc interrupt
-            _RA3 = 0; // turn off LED
-            
-        break;
-    }
-    
     vref_enable(); // enable vref
     sample_all(); // sample sensors
     vref_disable(); // disable vref
