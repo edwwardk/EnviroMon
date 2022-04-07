@@ -31,6 +31,14 @@
 #define MONTHS 0x05
 #define YEARS 0x06
 
+// alarm 0 registers
+#define ALM0SEC 0x0A
+#define ALM0MIN 0x0B
+#define ALM0HOUR 0x0C
+#define ALM0WKDAY 0x0D
+#define ALM0DATE 0x0E
+#define ALM0MTH 0x0F
+
 // global variables
 
 
@@ -40,6 +48,8 @@ uint8_t rtc_read_byte(uint8_t);
 
 uint8_t rtc_time(uint8_t);
 void rtc_set_time(void);
+
+void rtc_alarm_min();
 
 // write byte to rtc sram
 void rtc_write_byte(uint8_t address, uint8_t data) {
@@ -105,6 +115,25 @@ void rtc_set_time(void) {
     rtc_write_byte(YEARS, 0x22); // write years
     
     rtc_write_byte(SECONDS, 0b10000000); // start time at 0 sec
+}
+
+void rtc_alarm_min() {
+    rtc_write_byte(SECONDS, 0); // stop oscillator
+    
+    rtc_write_byte(CONTROL, 0b00011000); // enable alarm0
+    rtc_write_byte(ALM0WKDAY, 0b00000000); // cfg alarm0
+    rtc_write_byte(ALM0SEC, 0); // alarm on 0 sec
+    // clears alarm flag, sets alarm polarity, sets mask
+    // alarm will pull mfp low on seconds match
+    
+    rtc_write_byte(SECONDS, 0b1000000); // start oscillator
+}
+
+void rtc_clear_alm0() {
+    uint8_t data = rtc_read_byte(ALM0WKDAY);
+    data = data & 0x08;
+    
+    rtc_write_byte(ALM0WKDAY, data);
 }
 #endif
 

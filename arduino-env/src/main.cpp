@@ -31,7 +31,7 @@ uint8_t rx_recv_len = MESSAGE_LENGTH;
 
 
 // ethernet
-byte mac[] = {0x90, 0xA2, 0xDA, 0x10, 0x02, 0x0B}; // school mac
+byte mac[] = {0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x02}; // school mac
 
 EthernetClient client;
 
@@ -68,6 +68,9 @@ union {
   uint8_t ubytes[4];
 } union_temp, union_humidity, union_battery;
 
+// using serial?
+bool using_serial = 0;
+
 // function declarations
 void process_data(uint8_t[]);
 
@@ -82,33 +85,38 @@ void setup() {
   delay(10);
 
   // init serial
-  while(!Serial);
-  Serial.begin(9600);
+  if (using_serial) while(!Serial);
+  if (using_serial) Serial.begin(9600);
   delay(100);
 
   // check for lora init
   while (!rf95.init()) {
-    Serial.println("radio init failed :(");
+    if (using_serial) Serial.println("radio init failed :(");
     while (1);
   }
-  Serial.println("radio init success!");
-
+  if (using_serial) Serial.println("radio init success!");
+  
   // set lora frequency
   if (!rf95.setFrequency(RF95_FREQ)) {
-    Serial.println("cannot set frequency");
+    if (using_serial) Serial.println("cannot set frequency");
     while (1);
   }
-  Serial.print("frequency set to: "); Serial.println(RF95_FREQ);
+  if (using_serial) {
+    Serial.print("frequency set to: "); Serial.println(RF95_FREQ);
+  }
 
   // set address to arduino address
   rf95.setThisAddress(LORA_ARDUINO_ADDRESS);
+  if (using_serial) Serial.println("lora address set!");
 
   // init ethernet
   Ethernet.begin(mac);
   delay(1000);
 
   // print ip address
-  Serial.print("ip: "); Serial.println(Ethernet.localIP());
+  if (using_serial) {
+    Serial.print("ip: "); Serial.println(Ethernet.localIP());
+  }
 }
 
 
@@ -117,11 +125,11 @@ void loop() {
   rf95.waitAvailable(50); // wait for message, check 50ms
 
   if (rf95.recv(rx_buf, &rx_recv_len)) { // receive message
-    Serial.println(); // seperate debug messages with newline
+    if (using_serial) Serial.println(); // seperate debug messages with newline
 
     uint8_t i;
     for (i = 0; i < sizeof(rx_buf); i++) {
-      Serial.println(rx_buf[i]);
+      if (using_serial) Serial.println(rx_buf[i]);
     }
 
     process_data(rx_buf); // process and send data
@@ -141,16 +149,18 @@ void MQTT_connect() {
     return;
   }
 
-  Serial.println("connecting to mqtt...");
+  if (using_serial) Serial.println("connecting to mqtt...");
   
   while ((ret = mqtt.connect()) != 0) {
-    Serial.println(mqtt.connectErrorString(ret));
-    Serial.println("retrying mqtt connection in 5 seconds...");
+    if (using_serial) Serial.println(mqtt.connectErrorString(ret));
+    if (using_serial) Serial.println("retrying mqtt connection in 5 seconds...");
     mqtt.disconnect();
     delay(5000);
   }
 
-  Serial.println("mqtt connected!"); Serial.println("");
+  if (using_serial) {
+    Serial.println("mqtt connected!"); Serial.println("");
+  }
 }
 
 
@@ -169,11 +179,13 @@ void process_data(uint8_t data[]) {
         union_temp.ubytes[i] = data[i+1];
       }
 
-      Serial.print("temp: "); Serial.println(union_temp.ufloat);
+      if (using_serial) {
+        Serial.print("temp: "); Serial.println(union_temp.ufloat);
+      }
       if (!temp.publish(union_temp.ufloat)) {
-        Serial.println("temp failed!");
+        if (using_serial) Serial.println("temp failed!");
       } else {
-        Serial.println("temp sent!");
+        if (using_serial) Serial.println("temp sent!");
       }
     break;
 
@@ -183,11 +195,13 @@ void process_data(uint8_t data[]) {
         union_humidity.ubytes[i] = data[i+1];
       }
 
-      Serial.print("humidity: "); Serial.println(union_humidity.ufloat);
+      if (using_serial) {
+        Serial.print("humidity: "); Serial.println(union_humidity.ufloat);
+      }
       if (!humidity.publish(union_humidity.ufloat)) {
-        Serial.println("humidity failed!");
+        if (using_serial) Serial.println("humidity failed!");
       } else {
-        Serial.println("humidity sent!");
+        if (using_serial) Serial.println("humidity sent!");
       }
     break;
 
@@ -197,17 +211,19 @@ void process_data(uint8_t data[]) {
         union_battery.ubytes[i] = data[i+1];
       }
 
-      Serial.print("battery: "); Serial.println(union_battery.ufloat);
+      if (using_serial) {
+        Serial.print("battery: "); Serial.println(union_battery.ufloat);
+      }
       if (!battery.publish(union_battery.ufloat)) {
-        Serial.println("battery failed!");
+        if (using_serial) Serial.println("battery failed!");
       } else {
-        Serial.println("battery sent!");
+        if (using_serial) Serial.println("battery sent!");
       }
     break;
 
     // invalid id
     default:
-      Serial.println("invalid data!");
+      if (using_serial) Serial.println("invalid data!");
   }
 
   // ping server to keep connection alive

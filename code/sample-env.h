@@ -70,8 +70,6 @@ void main_sequence() {
     _RB3 = 1;
     __delay_us(5);
     _RB3 = 0;
-    
-    Sleep(); // go to sleep
 }
 
 // sample temperature, humidity, battery

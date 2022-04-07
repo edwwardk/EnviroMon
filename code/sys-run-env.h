@@ -33,8 +33,6 @@ void __startup() {
     adcInit(); // init adc module
     i2c_init(); // init i2c module
     spi1Init(); // init spi1 module
-    //spi2Init(); // init spi2 module
-    
     
     // device inits
     lora_init(); // init lora module
@@ -49,10 +47,6 @@ void __startup() {
     
     // configure external interrupts
     int_init(); // init external interrupts
-    
-    // configure rtcc
-    //rtcc_init(); // init rtcc module
-    
     
     startComplete = 1; // set start complete
     __delay_ms(200); // setup time

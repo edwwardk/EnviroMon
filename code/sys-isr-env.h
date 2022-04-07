@@ -37,6 +37,11 @@
 // int0 isr
 void __attribute__((__interrupt__, no_auto_psv)) _INT0Interrupt(void) {
     _INT0IF = 0; // reset int0 flag
+}
+
+// int1 isr
+void __attribute__((__interrupt__, no_auto_psv)) _INT1Interrupt(void) {
+    _INT1IF = 0; // reset int1 flag
     
     // switch run mode
     if (run_mode != manual_mode) {
@@ -51,11 +56,6 @@ void __attribute__((__interrupt__, no_auto_psv)) _INT0Interrupt(void) {
         _RA3 = 0; // turn off led
         _RTCIE = 1; // enable rtcc interrupt
     }
-}
-
-// int1 isr
-void __attribute__((__interrupt__, no_auto_psv)) _INT1Interrupt(void) {
-    _INT1IF = 0; // reset int1 flag
 }
 
 // rtcc isr
