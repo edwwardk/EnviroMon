@@ -1,3 +1,4 @@
 
 arduino-env/arduino-env/.vscode/c_cpp_properties.json
 arduino-env/arduino-env/.vscode/launch.json
+arduino-env/include/secrets.h

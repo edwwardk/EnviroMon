@@ -11,11 +11,12 @@
 #include <Dns.h>
 #include <Dhcp.h>
 
+#include "secrets.h"
 
 // rfm95
 #define RH_FLAGS_ACK 0x80
-#define RFM95_CS 9 // chip select
-#define RFM95_RST 3 // reset
+#define RFM95_CS 10 // chip select
+#define RFM95_RST 9 // reset
 #define RFM95_INT 2 // interrupt
 #define RF95_FREQ 915.0 // center frequency
 
@@ -53,21 +54,21 @@ union {
 
 
 // ethernet
-byte mac[] = {0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x02}; // school mac
+byte mac[] = {0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x69}; // school mac
 
 EthernetClient client;
 
 
 // mqtt
-#define AIO_SERVER "mqtt.elen.ca"
+#define AIO_SERVER "io.adafruit.com"
 #define AIO_SERVERPORT 1883
 
-Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT);
+Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO_KEY);
 
-Adafruit_MQTT_Publish temp = Adafruit_MQTT_Publish(&mqtt, "edward/temperature");
-Adafruit_MQTT_Publish humidity = Adafruit_MQTT_Publish(&mqtt, "edward/humidity");
-Adafruit_MQTT_Publish battery = Adafruit_MQTT_Publish(&mqtt, "edward/battery");
-Adafruit_MQTT_Publish rssi = Adafruit_MQTT_Publish(&mqtt, "edward/rssi");
+Adafruit_MQTT_Publish temp = Adafruit_MQTT_Publish(&mqtt, "edwward/feeds/temperature");
+Adafruit_MQTT_Publish humidity = Adafruit_MQTT_Publish(&mqtt, "edwward/feeds/humidity");
+Adafruit_MQTT_Publish battery = Adafruit_MQTT_Publish(&mqtt, "edwward/feeds/battery");
+Adafruit_MQTT_Publish rssi = Adafruit_MQTT_Publish(&mqtt, "edwward/feeds/rssi");
 
 
 // using serial?
